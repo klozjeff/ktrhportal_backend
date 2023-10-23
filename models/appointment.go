@@ -25,7 +25,7 @@ type Appointment struct {
 	PaymentMethodID     string                    `json:"payment_method_id"`
 	PaymentMethod       *AppointmentPaymentMethod `json:"payment_methods"`
 	InsuraceProviderID  string                    `json:"insurance_provider_id"`
-	InsuraceProvider    *InsuraceProvider         `json:"insurance_providers"`
+	InsuraceProvider    *InsuranceProvider        `json:"insurance_providers"`
 	CreatedByID         string                    `json:"created_by"`
 	CreatedBy           *User
 	Slug                string         `json:"slug" binding:"required" gorm:"unique"`

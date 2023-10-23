@@ -122,10 +122,10 @@ func CreateAppointmentPaymentMethodsSeeder() {
 // CreateInsuranceProvidersSeeder creates Providers Seeder
 func CreateInsuranceProvidersSeeder() {
 	providersList := [6]string{"NHIF", "Jubilee Insurance", "CIC Group", "AAR Insurance", "Old Mutual", "Minet"}
-	var providers []models.Language
+	var providers []models.InsuranceProvider
 	if result := DB.Find(&providers); result.RowsAffected == 0 {
 		for _, provider := range providersList {
-			providers = append(providers, models.Language{
+			providers = append(providers, models.InsuranceProvider{
 				Title: provider,
 			})
 		}
@@ -137,10 +137,10 @@ func CreateInsuranceProvidersSeeder() {
 // CreateInsuranceProvidersSeeder creates Providers Seeder
 func CreateInsuranceProviderStatusSeeder() {
 	statusList := [4]string{"Active", "Suspended", "Inactive"}
-	var statuses []models.AppointmentStatus
+	var statuses []models.InsuranceProviderStatus
 	if result := DB.Find(&statuses); result.RowsAffected == 0 {
 		for _, status := range statusList {
-			statuses = append(statuses, models.AppointmentStatus{
+			statuses = append(statuses, models.InsuranceProviderStatus{
 				Title: status,
 			})
 		}

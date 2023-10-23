@@ -75,7 +75,7 @@ func GetPaymentMethods(c *gin.Context) {
 }
 func GetInsuranceProviders(c *gin.Context) {
 	db := database.DB
-	var entities []models.InsuraceProvider
+	var entities []models.InsuranceProvider
 
 	if err := db.Find(&entities).Error; err != nil {
 		utilities.ShowMessage(c, http.StatusFound, err.Error())

@@ -75,8 +75,8 @@ func Connect() {
 				models.AppointmentStatus{},
 				models.Patient{},
 				models.AppointmentPaymentMethod{},
-				models.InsuraceProvider{},
-				models.InsuraceProviderStatus{},
+				models.InsuranceProvider{},
+				models.InsuranceProviderStatus{},
 				models.Language{},
 			)
 		}
@@ -98,8 +98,8 @@ func Connect() {
 				models.AppointmentStatus{},
 				models.Patient{},
 				models.AppointmentPaymentMethod{},
-				models.InsuraceProvider{},
-				models.InsuraceProviderStatus{},
+				models.InsuranceProvider{},
+				models.InsuranceProviderStatus{},
 				models.Language{},
 			)
 			if result != nil {
