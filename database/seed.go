@@ -89,6 +89,66 @@ func CreateAppointmentStatusSeeder() {
 
 }
 
+// CreateLanguagesSeeder creates statuses Seeder
+func CreateLanguagesSeeder() {
+	langsList := [2]string{"English", "Swahili"}
+	var langs []models.Language
+	if result := DB.Find(&langs); result.RowsAffected == 0 {
+		for _, lang := range langsList {
+			langs = append(langs, models.Language{
+				Title: lang,
+			})
+		}
+		DB.Create(&langs)
+	}
+
+}
+
+// CreateAppointmentStatusSeeder creates Payment Methods Seeder
+func CreateAppointmentPaymentMethodsSeeder() {
+	methodsList := [2]string{"Cash", "Insurance"}
+	var methods []models.AppointmentPaymentMethod
+	if result := DB.Find(&methods); result.RowsAffected == 0 {
+		for _, method := range methodsList {
+			methods = append(methods, models.AppointmentPaymentMethod{
+				Title: method,
+			})
+		}
+		DB.Create(&methods)
+	}
+
+}
+
+// CreateInsuranceProvidersSeeder creates Providers Seeder
+func CreateInsuranceProvidersSeeder() {
+	providersList := [6]string{"NHIF", "Jubilee Insurance", "CIC Group", "AAR Insurance", "Old Mutual", "Minet"}
+	var providers []models.Language
+	if result := DB.Find(&providers); result.RowsAffected == 0 {
+		for _, provider := range providersList {
+			providers = append(providers, models.Language{
+				Title: provider,
+			})
+		}
+		DB.Create(&providers)
+	}
+
+}
+
+// CreateInsuranceProvidersSeeder creates Providers Seeder
+func CreateInsuranceProviderStatusSeeder() {
+	statusList := [4]string{"Active", "Suspended", "Inactive"}
+	var statuses []models.AppointmentStatus
+	if result := DB.Find(&statuses); result.RowsAffected == 0 {
+		for _, status := range statusList {
+			statuses = append(statuses, models.AppointmentStatus{
+				Title: status,
+			})
+		}
+		DB.Create(&statuses)
+	}
+
+}
+
 /*
 * CreateCountiesSeeder Seeded
  */

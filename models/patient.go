@@ -16,7 +16,8 @@ type Patient struct {
 	Phone       string    `json:"phone_no"`
 	Email       string    `json:"email_address"`
 	Gender      string    `json:"gender"`
-	Language    string    `json:"language"`
+	LanguageID  string    `json:"language_id"`
+	Language    *Language `json:"language"`
 	Address     string    `json:"physical_address"`
 	CountyID    string    `json:"county"`
 	County      *County
