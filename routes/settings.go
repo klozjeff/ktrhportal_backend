@@ -19,5 +19,9 @@ func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/roles", Settings.GetRoles)
 		settings.GET("/relationships", Settings.GetRelationships)
 		settings.GET("/genders", Settings.GetGenders)
+		settings.GET("/languages", Settings.GetLanguages)
+		settings.GET("/insurance_providers", Settings.GetInsuranceProviders)
+		settings.GET("/payment_methods", Settings.GetPaymentMethods)
+
 	}
 }
