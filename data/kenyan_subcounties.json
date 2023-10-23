@@ -1,1206 +1,1206 @@
 [
     {
         "name": "Baringo Central",
-        "county": "baringo",
+        "county": "baringo"
     },
 	 {
         "name": "Baringo North",
-        "county": "baringo",
+        "county": "baringo"
     },
 	{
         "name": "Baringo South",
-        "county": "baringo",
+        "county": "baringo"
     },
 	{
         "name": "Eldama Ravine",
-        "county": "baringo",
+        "county": "baringo"
     },
 	{
         "name": "Mogotio",
-        "county": "baringo",
+        "county": "baringo"
     },
 	{
         "name": "Tiaty",
-        "county": "baringo",
+        "county": "baringo"
     },
 	{
         "name": "Bomet Central",
-        "county": "bomet",
+        "county": "bomet"
     },
 	{
         "name": "Bomet East",
-        "county": "bomet",
+        "county": "bomet"
     },
 	{
         "name": "Chepalungu",
-        "county": "bomet",
+        "county": "bomet"
     },
 	{
         "name": "Konoin",
-        "county": "bomet",
+        "county": "bomet"
     },
 	{
         "name": "Sotik",
-        "county": "bomet",
+        "county": "bomet"
     },
 	{
         "name": "Bumula",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Kabuchai",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Kanduyi",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Kimilil",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Mt Elgon",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Sirisia",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Tongaren",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Webuye East",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Webuye West",
-        "county": "bungoma",
+        "county": "bungoma"
     },
 	{
         "name": "Budalangi",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Butula",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Funyula",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Nambele",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Teso North",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Teso South",
-        "county": "busia",
+        "county": "busia"
     },
 	{
         "name": "Keiyo North",
-        "county": "elgeyo-marakwet",
+        "county": "elgeyo-marakwet"
     },
 	{
         "name": "Keiyo South",
-        "county": "elgeyo-marakwet",
+        "county": "elgeyo-marakwet"
     },
 	{
         "name": "Marakwet East",
-        "county": "elgeyo-marakwet",
+        "county": "elgeyo-marakwet"
     },
 	{
         "name": "Marakwet West",
-        "county": "elgeyo-marakwet",
+        "county": "elgeyo-marakwet"
     },
 	{
         "name": "Manyatta",
-        "county": "embu",
+        "county": "embu"
     },
 	{
         "name": "Mbeere North",
-        "county": "embu",
+        "county": "embu"
     },
 	{
         "name": "Mbeere South",
-        "county": "embu",
+        "county": "embu"
     },
 	{
         "name": "Runyenjes",
-        "county": "embu",
+        "county": "embu"
     },
 	{
         "name": "Daadab",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Fafi",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Garissa Township",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Hulugho",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Ijara",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Lagdera",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Balambala",
-        "county": "garissa",
+        "county": "garissa"
     },
 	{
         "name": "Homabay Town",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Kabondo",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Karachwonyo",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Kasipul",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Mbita",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Ndhiwa",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Rangwe",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Suba",
-        "county": "homa-bay",
+        "county": "homa-bay"
     },
 	{
         "name": "Isiolo",
-        "county": "isiolo",
+        "county": "isiolo"
     },
 	{
         "name": "Merti",
-        "county": "isiolo",
+        "county": "isiolo"
     },
 	{
         "name": "Garbatulla",
-        "county": "isiolo",
+        "county": "isiolo"
     },
 	{
         "name": "Isinya",
-        "county": "kajiado",
+        "county": "kajiado"
     },
 	{
         "name": "Kajiado Central",
-        "county": "kajiado",
+        "county": "kajiado"
     },
 	{
         "name": "Kajiado North",
-        "county": "kajiado",
+        "county": "kajiado"
     },
 	{
         "name": "Loitokitok",
-        "county": "kajiado",
+        "county": "kajiado"
     },
 	{
         "name": "Mashuuru",
-        "county": "kajiado",
+        "county": "kajiado"
     },
 	{
         "name": "Butere",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Kakamega Central",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Kakamega East",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Kakamega North",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Kakamega South",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Khwisero",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Lugari",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Lukuyani",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Lurambi",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Matete",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Mumias",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Mutungu",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Navakholo",
-        "county": "kakamega",
+        "county": "kakamega"
     },
 	{
         "name": "Ainamoi",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Belgut",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Bureti",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Kipkelion East",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Kipkelion West",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Soin/Sigowet",
-        "county": "kericho",
+        "county": "kericho"
     },
 	{
         "name": "Gatundu North",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Gatundu South",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Githunguri",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Juja",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Kabete",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Kiambaa",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Kiambu",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Kikuyu",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Limuru",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Ruiru",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Thika Town",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Lari",
-        "county": "kiambu",
+        "county": "kiambu"
     },
 	{
         "name": "Ganze",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Kaloleni",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Kilifi North",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Kilifi South",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Magarini",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Malindi",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Rabai",
-        "county": "kilifi",
+        "county": "kilifi"
     },
 	{
         "name": "Kirinyaga Central",
-        "county": "kirinyaga",
+        "county": "kirinyaga"
     },
 	{
         "name": "Kirinyaga East",
-        "county": "kirinyaga",
+        "county": "kirinyaga"
     },
 	{
         "name": "Kirinyaga West",
-        "county": "kirinyaga",
+        "county": "kirinyaga"
     },
 	{
         "name": "Mwea East",
-        "county": "kirinyaga",
+        "county": "kirinyaga"
     },
 	{
         "name": "Mwea West",
-        "county": "kirinyaga",
+        "county": "kirinyaga"
     },
 	{
         "name": "Kitutu Chache North",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Kitutu Chache",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Nyaribari Masaba",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Nyaribari Chache",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Bomachoge Borabu",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Bomachoge Chache",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Bobasi",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "South Mugirango",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Bonchari",
-        "county": "kisii",
+        "county": "kisii"
     },
 	{
         "name": "Kisumu Central",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Kisumu East",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Kisumu West",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Muhoroni",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Nyakach",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Nyando",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Seme",
-        "county": "kisumu",
+        "county": "kisumu"
     },
 	{
         "name": "Kitui West",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Kitui Central",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Kitui Rural",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Kitui South",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Kitui East",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Mwingi North",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Mwingi West",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Mwingi Central",
-        "county": "kitui",
+        "county": "kitui"
     },
 	{
         "name": "Kinango",
-        "county": "kwale",
+        "county": "kwale"
     },
 	{
         "name": "Lunga Lunga",
-        "county": "kwale",
+        "county": "kwale"
     },
 	{
         "name": "Msambweni",
-        "county": "kwale",
+        "county": "kwale"
     },
 	{
         "name": "Matuga",
-        "county": "kwale",
+        "county": "kwale"
     },
 	{
         "name": "Laikipia Central",
-        "county": "laikipia",
+        "county": "laikipia"
     },
 	{
         "name": "Laikipia East",
-        "county": "laikipia",
+        "county": "laikipia"
     },
 	{
         "name": "Laikipia North",
-        "county": "laikipia",
+        "county": "laikipia"
     },
 	{
         "name": "Laikipia West",
-        "county": "laikipia",
+        "county": "laikipia"
     },
 	{
         "name": "Nyahururu",
-        "county": "laikipia",
+        "county": "laikipia"
     },
 	{
         "name": "Lamu East",
-        "county": "lamu",
+        "county": "lamu"
     },
 	{
         "name": "Lamu West",
-        "county": "lamu",
+        "county": "lamu"
     },
 	{
         "name": "Kathiani",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Machakos Town",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Masinga",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Matungulu",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Mavoko",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Mwala",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Yatta",
-        "county": "machakos",
+        "county": "machakos"
     },
 	{
         "name": "Kaiti",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Kibwezi West",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Kibwezi East",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Kilome",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Makueni",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Mbooni",
-        "county": "makueni",
+        "county": "makueni"
     },
 	{
         "name": "Banissa",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
         "name": "Lafey",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
         "name": "Mandera East",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
         "name": "Mandera North",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
         "name": "Mandera South",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
         "name": "Mandera West",
-        "county": "mandera",
+        "county": "mandera"
     },
 	{
 	    "name": "Laisamis",
-        "county": "marsabit",
+        "county": "marsabit"
     },
 	{
 	    "name": "Moyale",
-        "county": "marsabit",
+        "county": "marsabit"
     },
 	{
 	    "name": "North Hor",
-        "county": "marsabit",
+        "county": "marsabit"
     },
 	{
 	    "name": "Saku",
-        "county": "marsabit",
+        "county": "marsabit"
     },
 	{
 	    "name": "Buuri",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Igembe Central",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Igembe North",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Igembe South",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Imenti Central",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Imenti North",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Imenti South",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Tigania East",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Tigania West",
-        "county": "meru",
+        "county": "meru"
     },
 	{
 	    "name": "Awendo",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Kuria East",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Kuria West",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Mabera",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Ntimaru",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Rongo",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Suna East",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Suna West",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Uriri",
-        "county": "migori",
+        "county": "migori"
     },
 	{
 	    "name": "Changamwe",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Jomvu",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Kisauni",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Likoni",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Likoni",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Nyali",
-        "county": "mombasa",
+        "county": "mombasa"
     },
 	{
 	    "name": "Gatanga",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Kahuro",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Kandara",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Kangema",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Kigumo",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Kiharu",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Mathioya",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Murang’a South",
-        "county": "muranga",
+        "county": "muranga"
     },
 	{
 	    "name": "Dagoretti North",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Dagoretti South",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Embakasi Central",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Embakasi East",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Embakasi North",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Embakasi South",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Embakasi West",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Kamukunji",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Kasarani",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Kibra",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Lang’ata",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Makadara",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Mathare",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Roysambu",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Starehe",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Westlands",
-        "county": "nairobi",
+        "county": "nairobi"
     },
 	{
 	    "name": "Bahati",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Gilgil",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Kuresoi North",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Kuresoi South",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Molo",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Naivasha",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Nakuru Town East",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Nakuru Town West",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Njoro",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Rongai",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Subukia",
-        "county": "nakuru",
+        "county": "nakuru"
     },
 	{
 	    "name": "Aldai",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Chesumei",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Emgwen",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Mosop",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Nandi Hills",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Tindiret",
-        "county": "nandi",
+        "county": "nandi"
     },
 	{
 	    "name": "Narok East",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Narok North",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Narok South",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Narok West",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Transmara East",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Transmara West",
-        "county": "narok",
+        "county": "narok"
     },
 	{
 	    "name": "Borabu",
-        "county": "nyamira",
+        "county": "nyamira"
     },
 	{
 	    "name": "Manga",
-        "county": "nyamira",
+        "county": "nyamira"
     },
 	{
 	    "name": "Masaba North",
-        "county": "nyamira",
+        "county": "nyamira"
     },
 	{
 	    "name": "Nyamira North",
-        "county": "nyamira",
+        "county": "nyamira"
     },
 	{
 	    "name": "Nyamira South",
-        "county": "nyamira",
+        "county": "nyamira"
     },
 	{
 	    "name": "Kinangop",
-        "county": "nyandarua",
+        "county": "nyandarua"
     },
 	{
 	    "name": "Kipipiri",
-        "county": "nyandarua",
+        "county": "nyandarua"
     },
 	{
 	    "name": "Ndaragwa",
-        "county": "nyandarua",
+        "county": "nyandarua"
     },
 	{
 	    "name": "Ol-Kalou",
-        "county": "nyandarua",
+        "county": "nyandarua"
     },
 	{
 	    "name": "Ol Joro Orok",
-        "county": "nyandarua",
+        "county": "nyandarua"
     },
 	{
 	    "name": "Kieni East",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Kieni West",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Mathira  East",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Mathira  West",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Mukurweini",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": " Nyeri Town",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Othaya",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Tetu",
-        "county": "nyeri",
+        "county": "nyeri"
     },
 	{
 	    "name": "Samburu East",
-        "county": "samburu",
+        "county": "samburu"
     },
 	{
 	    "name": "Samburu North",
-        "county": "samburu",
+        "county": "samburu"
     },
 	{
 	    "name": "Samburu West",
-        "county": "samburu",
+        "county": "samburu"
     },
 	{
 	    "name": "Alego Usonga",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Bondo",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Gem",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Rarieda",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Ugenya",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Unguja",
-        "county": "siaya",
+        "county": "siaya"
     },
 	{
 	    "name": "Mwatate",
-        "county": "taita-taveta",
+        "county": "taita-taveta"
     },
 	{
 	    "name": "Taveta",
-        "county": "taita-taveta",
+        "county": "taita-taveta"
     },
 	{
 	    "name": "Voi",
-        "county": "taita-taveta",
+        "county": "taita-taveta"
     },
 	{
 	    "name": "Wundanyi",
-        "county": "taita-taveta",
+        "county": "taita-taveta"
     },
 	{
 	    "name": "Bura",
-        "county": "tana-river",
+        "county": "tana-river"
     },
 	{
 	    "name": "Galole",
-        "county": "tana-river",
+        "county": "tana-river"
     },
 	{
 	    "name": "Garsen",
-        "county": "tana-river",
+        "county": "tana-river"
     },
 	{
 	    "name": "Tharaka North",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Tharaka South",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Chuka",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Igambango’mbe",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Maara",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Chiakariga ",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Muthambi",
-        "county": "tharaka-nithi",
+        "county": "tharaka-nithi"
     },
 	{
 	    "name": "Cherangany",
-        "county": "trans-nzoia",
+        "county": "trans-nzoia"
     },
 	{
 	    "name": "Endebess",
-        "county": "trans-nzoia",
+        "county": "trans-nzoia"
     },
 	{
 	    "name": "Kiminini",
-        "county": "trans-nzoia",
+        "county": "trans-nzoia"
     },
 	{
 	    "name": "Kwanza",
-        "county": "trans-nzoia",
+        "county": "trans-nzoia"
     },
 	{
 	    "name": "Saboti",
-        "county": "trans-nzoia",
+        "county": "trans-nzoia"
     },
 	{
 	    "name": "Loima",
-        "county": "turkana",
+        "county": "turkana"
     },
 	{
 	    "name": "Turkana Central",
-        "county": "turkana",
+        "county": "turkana"
     },
 	{
 	    "name": "Turkana East",
-        "county": "turkana",
+        "county": "turkana"
     },
 	{
 	    "name": "Turkana North",
-        "county": "turkana",
+        "county": "turkana"
     },
 	{
 	    "name": "Turkana South",
-        "county": "turkana",
+        "county": "turkana"
     },
 	{
 	    "name": "Ainabkoi",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Kapseret",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Kesses",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Moiben",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Soy",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Turbo",
-        "county": "uasin-gishu",
+        "county": "uasin-gishu"
     },
 	{
 	    "name": "Emuhaya",
-        "county": "vihiga",
+        "county": "vihiga"
     },
 	{
 	    "name": "Hamisi",
-        "county": "vihiga",
+        "county": "vihiga"
     },
 	{
 	    "name": "Luanda",
-        "county": "vihiga",
+        "county": "vihiga"
     },
 	{
 	    "name": "Sabatia",
-        "county": "vihiga",
+        "county": "vihiga"
     },
 	{
 	    "name": "Vihiga",
-        "county": "vihiga",
+        "county": "vihiga"
     },
 	{
 	    "name": "Eldas",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Tarbaj",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Wajir East",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Wajir North",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Wajir South",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Wajir West",
-        "county": "wajir",
+        "county": "wajir"
     },
 	{
 	    "name": "Central Pokot",
-        "county": "west-pokot",
+        "county": "west-pokot"
     },
 	{
 	    "name": "North Pokot",
-        "county": "west-pokot",
+        "county": "west-pokot"
     },
 	{
 	    "name": "Pokot South",
-        "county": "west-pokot",
+        "county": "west-pokot"
     },
 	{
 	    "name": "West Pokot",
-        "county": "west-pokot",
-    },
+        "county": "west-pokot"
+    }
 ]
