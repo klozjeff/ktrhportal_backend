@@ -68,6 +68,7 @@ func Connect() {
 				models.Relationship{},
 				models.AccountStatus{},
 				models.County{},
+				models.SubCounty{},
 				models.Specialty{},
 				models.Doctor{},
 				models.Appointment{},
@@ -90,6 +91,7 @@ func Connect() {
 				models.Relationship{},
 				models.AccountStatus{},
 				models.County{},
+				models.SubCounty{},
 				models.Specialty{},
 				models.Doctor{},
 				models.Appointment{},
@@ -111,6 +113,7 @@ func Connect() {
 			CreateAccountStatusSeeder()
 			CreateAppointmentStatusSeeder()
 			CreateCountiesSeeder()
+			CreateSubCountiesSeeder()
 			CreateAppointmentPaymentMethodsSeeder()
 			CreateLanguagesSeeder()
 			CreateInsuranceProvidersSeeder()

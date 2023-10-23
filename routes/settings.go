@@ -23,6 +23,7 @@ func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/insurance_providers", Settings.GetInsuranceProviders)
 		settings.GET("/payment_methods", Settings.GetPaymentMethods)
 		settings.GET("/counties", Settings.GetCounties)
+		settings.GET("/sub_counties", Settings.GetSubCounties)
 
 	}
 }

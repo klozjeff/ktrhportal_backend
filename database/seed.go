@@ -172,3 +172,27 @@ func CreateCountiesSeeder() {
 	//insert states into database
 	DB.Create(&counties)
 }
+
+/*
+* CreateSubCountiesSeeder Seeded
+ */
+func CreateSubCountiesSeeder() {
+	// Open our jsonFile
+	jsonFile, err := os.Open("data/kenyan_subcounties.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Opened kenya-subcounties.json")
+	// defer the closing of our jsonFile so that we can parse it later on
+	defer jsonFile.Close()
+
+	// read our opened jsonFile as a byte array.
+	byteValue, _ := io.ReadAll(jsonFile)
+
+	var subcounties []models.SubCounty
+	if jsonError := json.Unmarshal(byteValue, &subcounties); jsonError != nil {
+		log.Printf("Error Unmarshaling Json: %s", jsonError.Error())
+	}
+	//insert states into database
+	DB.Create(&subcounties)
+}

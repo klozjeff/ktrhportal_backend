@@ -93,6 +93,15 @@ func GetCounties(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "counties", entities)
 }
+func GetSubCounties(c *gin.Context) {
+	db := database.DB
+	var entities []models.SubCounty
+	if err := db.Where("county=?", c.Param("county")).Preload(clause.Associations).Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "sub-counties", entities)
+}
 
 // Specialities
 func AddSpecialty(c *gin.Context) {
