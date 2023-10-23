@@ -75,8 +75,8 @@ func Connect() {
 				models.AppointmentStatus{},
 				models.Patient{},
 				models.AppointmentPaymentMethod{},
-				models.InsuranceProvider{},
 				models.InsuranceProviderStatus{},
+				models.InsuranceProvider{},
 				models.Language{},
 			)
 		}
@@ -98,8 +98,8 @@ func Connect() {
 				models.AppointmentStatus{},
 				models.Patient{},
 				models.AppointmentPaymentMethod{},
-				models.InsuranceProvider{},
 				models.InsuranceProviderStatus{},
+				models.InsuranceProvider{},
 				models.Language{},
 			)
 			if result != nil {
@@ -116,8 +116,9 @@ func Connect() {
 			CreateSubCountiesSeeder()
 			CreateAppointmentPaymentMethodsSeeder()
 			CreateLanguagesSeeder()
-			CreateInsuranceProvidersSeeder()
 			CreateInsuranceProviderStatusSeeder()
+			CreateInsuranceProvidersSeeder()
+
 		}
 
 	} else {
