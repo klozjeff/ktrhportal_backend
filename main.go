@@ -6,6 +6,7 @@ import (
 	"ktrhportal/routes"
 	"ktrhportal/utilities"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
@@ -15,8 +16,29 @@ func init() {
 	log.SetFormatter(&log.TextFormatter{FullTimestamp: true})
 }
 
+var AllowedOrigins = []string{
+	"http://ktrh.tsavoerp.com",
+	"http://localhost:8999",
+	"http://ktrhportal.tsavoerp.com",
+}
+
+var AllowedHeaders = []string{
+	"Authorization", "Accept", "Accept-Charset", "Accept-Language",
+	"Accept-Encoding", "Origin", "Host", "User-Agent", "Content-Length",
+	"Content-Type", " X-Authorization", " Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers",
+}
+
 func main() {
 	app := gin.Default()
+	config := cors.DefaultConfig()
+	config.AllowOrigins = AllowedOrigins
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "UPDATE"}
+	config.AllowHeaders = AllowedHeaders
+	config.ExposeHeaders = []string{"Content-Length"}
+	config.AllowCredentials = true
+
+	app.Use(cors.New(config))
+
 	gin.ForceConsoleColor()
 	database.Connect()
 	routes.Setup(app)
