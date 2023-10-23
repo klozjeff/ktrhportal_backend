@@ -96,7 +96,7 @@ func GetCounties(c *gin.Context) {
 func GetSubCounties(c *gin.Context) {
 	db := database.DB
 	var entities []models.SubCounty
-	if err := db.Where("county=?", c.Param("county")).Preload(clause.Associations).Find(&entities).Error; err != nil {
+	if err := db.Where("county=?", c.Param("county_slug")).Preload(clause.Associations).Find(&entities).Error; err != nil {
 		utilities.ShowMessage(c, http.StatusFound, err.Error())
 		return
 	}
