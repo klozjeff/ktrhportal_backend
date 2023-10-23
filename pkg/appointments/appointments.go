@@ -49,7 +49,7 @@ func AddAppointment(c *gin.Context) {
 		Phone:       payload.Phone,
 		Email:       payload.Email,
 		Gender:      GetEntityIDBySlug(models.Gender{}, payload.Gender),
-		Language:    payload.Language,
+		LanguageID:  GetEntityIDBySlug(models.Language{}, payload.Language),
 		Address:     payload.Address,
 		CountyID:    GetEntityIDBySlug(models.County{}, payload.County),
 		SubCounty:   payload.SubCounty,

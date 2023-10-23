@@ -53,6 +53,36 @@ func GetAccountStatuses(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "account statuses", entities)
 }
+func GetLanguages(c *gin.Context) {
+	db := database.DB
+	var entities []models.Language
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "languages", entities)
+}
+func GetPaymentMethods(c *gin.Context) {
+	db := database.DB
+	var entities []models.AppointmentPaymentMethod
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "payment_methods", entities)
+}
+func GetInsuranceProviders(c *gin.Context) {
+	db := database.DB
+	var entities []models.InsuraceProvider
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "providers", entities)
+}
 
 // Specialities
 func AddSpecialty(c *gin.Context) {
