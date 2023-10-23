@@ -83,6 +83,16 @@ func GetInsuranceProviders(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "providers", entities)
 }
+func GetCounties(c *gin.Context) {
+	db := database.DB
+	var entities []models.County
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "counties", entities)
+}
 
 // Specialities
 func AddSpecialty(c *gin.Context) {
