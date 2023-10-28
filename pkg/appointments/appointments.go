@@ -25,6 +25,7 @@ func AddAppointment(c *gin.Context) {
 		County            string `json:"county" binding:"required"`
 		SubCounty         string `json:"sub_county" binding:"required"`
 		DateOfAppointment string `json:"appointment_date" binding:"required"`
+		TimeOfAppointment string `json:"appointment_time" binding:"required"`
 		Specialty         string `json:"specialty" binding:"required"`
 		Doctor            string `json:"doctor" binding:"required"`
 		PaymentMethod     string `json:"payment_method" binding:"required"`
@@ -54,12 +55,13 @@ func AddAppointment(c *gin.Context) {
 		LanguageID:  GetEntityIDBySlug(models.Language{}, payload.Language),
 		Address:     payload.Address,
 		CountyID:    GetEntityIDBySlug(models.County{}, payload.County),
-		SubCounty:   payload.SubCounty,
-		CreatedByID: "503a5f50-43b5-4263-ad89-9ba59044b57b",
+		SubCounty:   GetEntityIDBySlug(models.County{}, payload.SubCounty),
+		CreatedByID: "c12c17df-9429-4f5d-964e-a336ca0b130c",
 	}
 
 	appointment := models.Appointment{
 		DateOfAppointment:   payload.DateOfAppointment,
+		TimeOfAppointment:   payload.TimeOfAppointment,
 		SpecialtyID:         GetEntityIDBySlug(models.Specialty{}, payload.Specialty),
 		DoctorID:            GetEntityIDBySlug(models.Doctor{}, payload.Doctor),
 		SeekingCareFor:      payload.SeekingCareFor,
@@ -69,7 +71,7 @@ func AddAppointment(c *gin.Context) {
 		PaymentMethodID:     GetEntityIDBySlug(models.AppointmentPaymentMethod{}, payload.PaymentMethod),
 		Slug:                appointmentCode,
 		Patient:             &patient,
-		CreatedByID:         "503a5f50-43b5-4263-ad89-9ba59044b57b",
+		CreatedByID:         "c12c17df-9429-4f5d-964e-a336ca0b130c",
 	}
 
 	if err := db.Create(&appointment).Error; err != nil {
