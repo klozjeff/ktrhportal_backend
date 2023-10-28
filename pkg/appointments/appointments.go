@@ -55,7 +55,7 @@ func AddAppointment(c *gin.Context) {
 		LanguageID: GetEntityIDBySlug(models.Language{}, payload.Language),
 		Address:    payload.Address,
 		CountyID:   GetEntityIDBySlug(models.County{}, payload.County),
-		SubCounty:  GetEntityIDBySlug(models.County{}, payload.SubCounty),
+		SubCounty:  GetEntityIDBySlug(models.SubCounty{}, payload.SubCounty),
 	}
 
 	appointment := models.Appointment{
