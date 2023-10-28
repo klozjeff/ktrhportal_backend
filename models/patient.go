@@ -15,13 +15,15 @@ type Patient struct {
 	LastName    string    `json:"last_name"`
 	Phone       string    `json:"phone_no"`
 	Email       string    `json:"email_address"`
-	Gender      string    `json:"gender"`
+	GenderID    string    `json:"gender_id"`
+	Gender      *Gender   `json:"gender"`
 	LanguageID  string    `json:"language_id"`
 	Language    *Language `json:"language"`
 	Address     string    `json:"physical_address"`
 	CountyID    string    `json:"county"`
 	County      *County
-	SubCounty   string         `json:"sub_county"`
+	SubCountyID string         `json:"sub_county_id"`
+	SubCounty   *SubCounty     `json:"sub_county"`
 	Appointment *[]Appointment `json:"patient_appointments"`
 	Slug        string         `json:"slug" binding:"required" gorm:"unique"`
 	CreatedAt   time.Time      `json:"-"`

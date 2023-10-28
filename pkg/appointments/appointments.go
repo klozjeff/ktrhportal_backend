@@ -47,16 +47,16 @@ func AddAppointment(c *gin.Context) {
 	}
 
 	patient := models.Patient{
-		FirstName:  payload.FirstName,
-		MiddleName: payload.MiddleName,
-		LastName:   payload.LastName,
-		Phone:      payload.Phone,
-		Email:      payload.Email,
-		Gender:     GetEntityIDBySlug(models.Gender{}, payload.Gender),
-		LanguageID: GetEntityIDBySlug(models.Language{}, payload.Language),
-		Address:    payload.Address,
-		CountyID:   GetEntityIDBySlug(models.County{}, payload.County),
-		SubCounty:  GetEntityIDBySlug(models.SubCounty{}, payload.SubCounty),
+		FirstName:   payload.FirstName,
+		MiddleName:  payload.MiddleName,
+		LastName:    payload.LastName,
+		Phone:       payload.Phone,
+		Email:       payload.Email,
+		GenderID:    GetEntityIDBySlug(models.Gender{}, payload.Gender),
+		LanguageID:  GetEntityIDBySlug(models.Language{}, payload.Language),
+		Address:     payload.Address,
+		CountyID:    GetEntityIDBySlug(models.County{}, payload.County),
+		SubCountyID: GetEntityIDBySlug(models.SubCounty{}, payload.SubCounty),
 	}
 
 	appointment := models.Appointment{
