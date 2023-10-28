@@ -27,6 +27,8 @@ func AddAppointment(c *gin.Context) {
 		DateOfAppointment string `json:"appointment_date" binding:"required"`
 		Specialty         string `json:"specialty" binding:"required"`
 		Doctor            string `json:"doctor" binding:"required"`
+		PaymentMethod     string `json:"payment_method" binding:"required"`
+		InsuranceProvider string `json:"insurance_provider"`
 		SeekingCareFor    string `json:"seeking_care_for" binding:"required"`
 		Relationship      string `json:"relationship"`
 	}
@@ -63,6 +65,8 @@ func AddAppointment(c *gin.Context) {
 		SeekingCareFor:      payload.SeekingCareFor,
 		RelationshipID:      GetEntityIDBySlug(models.Relationship{}, payload.Relationship),
 		AppointmentStatusID: GetEntityIDBySlug(models.AppointmentStatus{}, "new"),
+		InsuraceProviderID:  GetEntityIDBySlug(models.InsuranceProvider{}, payload.InsuranceProvider),
+		PaymentMethodID:     GetEntityIDBySlug(models.AppointmentPaymentMethod{}, payload.PaymentMethod),
 		Slug:                appointmentCode,
 		Patient:             &patient,
 		CreatedByID:         "503a5f50-43b5-4263-ad89-9ba59044b57b",
