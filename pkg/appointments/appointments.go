@@ -2,6 +2,7 @@ package appointments
 
 import (
 	"errors"
+	"fmt"
 	"ktrhportal/database"
 	"ktrhportal/models"
 	"ktrhportal/services"
@@ -77,11 +78,13 @@ func AddAppointment(c *gin.Context) {
 		return
 	}
 	//Send Notifications
-	msg := "Dear " + payload.FirstName + ",your appointment booking has been sent successfully. We will get back as soon as possible for confirmation. Appointment tracking code is " + appointmentCode
+	//msg := "Dear " + payload.FirstName + ",your appointment booking has been sent successfully. We will get back as soon as possible for confirmation. Appointment tracking code is " + appointmentCode
+	msg := fmt.Sprintf("Dear %s,your appointment booking has been sent successfully. We will get back as soon as possible for confirmation. Appointment tracking code is %s", payload.FirstName, appointmentCode)
 	if _, err := SendSMSNotification(payload.Phone, msg); err != nil {
 		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
 		return
 	}
+
 	utilities.Show(c, http.StatusOK, "patient appointment added successfully", appointment)
 
 }
