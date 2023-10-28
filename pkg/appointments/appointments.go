@@ -56,7 +56,6 @@ func AddAppointment(c *gin.Context) {
 		Address:    payload.Address,
 		CountyID:   GetEntityIDBySlug(models.County{}, payload.County),
 		SubCounty:  GetEntityIDBySlug(models.County{}, payload.SubCounty),
-		//CreatedByID: "c12c17df-9429-4f5d-964e-a336ca0b130c",
 	}
 
 	appointment := models.Appointment{
@@ -71,7 +70,6 @@ func AddAppointment(c *gin.Context) {
 		PaymentMethodID:     GetEntityIDBySlug(models.AppointmentPaymentMethod{}, payload.PaymentMethod),
 		Slug:                appointmentCode,
 		Patient:             &patient,
-		//CreatedByID:         "c12c17df-9429-4f5d-964e-a336ca0b130c",
 	}
 
 	if err := db.Create(&appointment).Error; err != nil {
