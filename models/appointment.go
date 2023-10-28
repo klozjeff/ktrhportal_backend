@@ -26,12 +26,10 @@ type Appointment struct {
 	PaymentMethod       *AppointmentPaymentMethod `json:"payment_methods"`
 	InsuraceProviderID  string                    `json:"insurance_provider_id"`
 	InsuraceProvider    *InsuranceProvider        `json:"insurance_providers"`
-	//CreatedByID         string                    `json:"created_by"`
-	//CreatedBy           *User
-	Slug      string         `json:"slug" binding:"required" gorm:"unique"`
-	CreatedAt time.Time      `json:"-"`
-	UpdatedAt time.Time      `json:"-"`
-	DeletedAt gorm.DeletedAt `json:"-"`
+	Slug                string                    `json:"slug" binding:"required" gorm:"unique"`
+	CreatedAt           time.Time                 `json:"-"`
+	UpdatedAt           time.Time                 `json:"-"`
+	DeletedAt           gorm.DeletedAt            `json:"-"`
 }
 
 func (appointment *Appointment) BeforeCreate(scope *gorm.DB) error {

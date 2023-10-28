@@ -23,12 +23,10 @@ type Patient struct {
 	County      *County
 	SubCounty   string         `json:"sub_county"`
 	Appointment *[]Appointment `json:"patient_appointments"`
-	//CreatedByID string         `json:"created_by"`
-	//CreatedBy   *User
-	Slug      string         `json:"slug" binding:"required" gorm:"unique"`
-	CreatedAt time.Time      `json:"-"`
-	UpdatedAt time.Time      `json:"-"`
-	DeletedAt gorm.DeletedAt `json:"-"`
+	Slug        string         `json:"slug" binding:"required" gorm:"unique"`
+	CreatedAt   time.Time      `json:"-"`
+	UpdatedAt   time.Time      `json:"-"`
+	DeletedAt   gorm.DeletedAt `json:"-"`
 }
 
 func (patient *Patient) BeforeCreate(scope *gorm.DB) error {
