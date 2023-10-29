@@ -4,6 +4,7 @@ import (
 	"ktrhportal/database"
 	"ktrhportal/middlewares"
 	"ktrhportal/models"
+	"ktrhportal/pkg/appointments"
 	"ktrhportal/utilities"
 	"net/http"
 
@@ -205,5 +206,41 @@ func GetDoctorBySpecialty(c *gin.Context) {
 	var entities []models.Doctor
 	db := database.DB
 	db.Where("specialty_id = ?", c.Param("specialty_id")).Preload(clause.Associations).Find(&entities)
+	utilities.Show(c, http.StatusOK, "success", entities)
+}
+
+func GetDoctorsBySpecialty(c *gin.Context) {
+	var payload struct {
+		SearchParam string `json:"search_param" binding:"required"`
+		SearchVal   string `json:"search_val" binding:"required"`
+	}
+	if validationError := c.ShouldBindJSON(&payload); validationError != nil {
+		utilities.ErrrsList = append(utilities.ErrrsList, utilities.Validate(validationError)...)
+		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
+		return
+	}
+	var entities []models.Doctor
+	db := database.DB
+	searchID := payload.SearchVal
+	if payload.SearchParam == "slug" {
+		searchID = appointments.GetEntityIDBySlug(models.Specialty{}, payload.SearchVal)
+	}
+	db.Where("specialty_id = ?", searchID).Preload(clause.Associations).Find(&entities)
+	utilities.Show(c, http.StatusOK, "success", entities)
+}
+
+func GetDoctorDetails(c *gin.Context) {
+	var payload struct {
+		SearchParam string `json:"search_param" binding:"required"`
+		SearchVal   string `json:"search_val" binding:"required"`
+	}
+	if validationError := c.ShouldBindJSON(&payload); validationError != nil {
+		utilities.ErrrsList = append(utilities.ErrrsList, utilities.Validate(validationError)...)
+		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
+		return
+	}
+	var entities []models.Doctor
+	db := database.DB
+	db.Where(payload.SearchParam+" = ?", payload.SearchVal).Preload(clause.Associations).First(&entities)
 	utilities.Show(c, http.StatusOK, "success", entities)
 }
