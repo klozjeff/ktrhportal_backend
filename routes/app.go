@@ -3,6 +3,7 @@ package routes
 import (
 	"ktrhportal/middlewares"
 	Appointments "ktrhportal/pkg/appointments"
+	Feedbacks "ktrhportal/pkg/feedback"
 	Patients "ktrhportal/pkg/patients"
 
 	"github.com/gin-gonic/gin"
@@ -17,6 +18,10 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		//patients
 		settings.GET("/patients", middlewares.AuthMiddleware(), Patients.GetPatients)
 		settings.POST("/patient", Patients.GetPatient)
+
+		//Feedbacks
+		settings.GET("/feedbacks", middlewares.AuthMiddleware(), Feedbacks.GetFeedbacks)
+		settings.POST("/add_feedback", Feedbacks.AddFeedback)
 
 	}
 }

@@ -78,6 +78,7 @@ func Connect() {
 				models.InsuranceProviderStatus{},
 				models.InsuranceProvider{},
 				models.Language{},
+				models.PatientFeedback{},
 			)
 		}
 
@@ -101,6 +102,7 @@ func Connect() {
 				models.InsuranceProviderStatus{},
 				models.InsuranceProvider{},
 				models.Language{},
+				models.PatientFeedback{},
 			)
 			if result != nil {
 				log.Print(result.Error())
