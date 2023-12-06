@@ -1,6 +1,10 @@
 package utilities
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 func Show(c *gin.Context, code int, msg interface{}, data interface{}) {
 	c.JSON(code, gin.H{
@@ -12,7 +16,7 @@ func Show(c *gin.Context, code int, msg interface{}, data interface{}) {
 }
 func ShowMessage(c *gin.Context, code int, msg interface{}) {
 	c.JSON(code, gin.H{
-		"success":     true,
+		"success":     code == http.StatusOK,
 		"status_code": code,
 		"message":     msg,
 	})

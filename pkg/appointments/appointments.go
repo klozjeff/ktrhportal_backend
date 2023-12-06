@@ -4,12 +4,15 @@ import (
 	"errors"
 	"fmt"
 	"ktrhportal/database"
+	"ktrhportal/filters"
 	"ktrhportal/models"
 	"ktrhportal/services"
 	"ktrhportal/utilities"
 	"net/http"
 
+	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
@@ -39,36 +42,36 @@ func AddAppointment(c *gin.Context) {
 		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
 		return
 	}
-
 	db := database.DB
 	appointmentCode, err := utilities.GenerateOTP(4)
 	if err != nil {
 		return
 	}
-
-	patient := models.Patient{
-		FirstName:   payload.FirstName,
-		MiddleName:  payload.MiddleName,
-		LastName:    payload.LastName,
-		Phone:       payload.Phone,
-		Email:       payload.Email,
-		GenderID:    GetEntityIDBySlug(models.Gender{}, payload.Gender),
-		LanguageID:  GetEntityIDBySlug(models.Language{}, payload.Language),
-		Address:     payload.Address,
-		CountyID:    GetEntityIDBySlug(models.County{}, payload.County),
-		SubCountyID: GetEntityIDBySlug(models.SubCounty{}, payload.SubCounty),
+	//Check if patient exists
+	var patient models.Patient
+	if result := db.Where("phone = ?", payload.Phone).First(&patient); result.RowsAffected <= 0 {
+		patient.FirstName = payload.FirstName
+		patient.MiddleName = payload.MiddleName
+		patient.LastName = payload.LastName
+		patient.Phone = payload.Phone
+		patient.Email = payload.Email
+		patient.GenderID = payload.Gender
+		patient.LanguageID = payload.Language
+		patient.Address = payload.Address
+		patient.CountyID = GetEntityIDBySlug(models.County{}, payload.County)
+		patient.SubCountyID = payload.SubCounty
+		db.Create(&patient)
 	}
-
 	appointment := models.Appointment{
 		DateOfAppointment:   payload.DateOfAppointment,
 		TimeOfAppointment:   payload.TimeOfAppointment,
-		SpecialtyID:         GetEntityIDBySlug(models.Specialty{}, payload.Specialty),
-		DoctorID:            GetEntityIDBySlug(models.Doctor{}, payload.Doctor),
+		SpecialtyID:         payload.Specialty,
+		DoctorID:            payload.Doctor,
 		SeekingCareFor:      payload.SeekingCareFor,
-		RelationshipID:      GetEntityIDBySlug(models.Relationship{}, payload.Relationship),
+		RelationshipID:      &payload.Relationship,
 		AppointmentStatusID: GetEntityIDBySlug(models.AppointmentStatus{}, "new"),
-		InsuraceProviderID:  GetEntityIDBySlug(models.InsuranceProvider{}, payload.InsuranceProvider),
-		PaymentMethodID:     GetEntityIDBySlug(models.AppointmentPaymentMethod{}, payload.PaymentMethod),
+		InsuraceProviderID:  &payload.InsuranceProvider,
+		PaymentMethodID:     payload.PaymentMethod,
 		Slug:                appointmentCode,
 		Patient:             &patient,
 	}
@@ -110,4 +113,52 @@ func SendSMSNotification(phone_no string, msg string) (bool, error) {
 		return false, errors.New(sendSmsResErr.Error())
 	}
 	return true, nil
+}
+
+func AllAppointments(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.AppointmentsFilter)
+	db := database.DB
+	var entities []models.Appointment
+	var scopes []func(*gorm.DB) *gorm.DB
+	if (filters.AppointmentsFilter{}) == *input {
+		if err := db.
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "appointments"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Joins("LEFT JOIN patients ON patients.id=appointments.patient_id").
+			Joins("LEFT JOIN doctors ON doctors.id=appointments.doctor_id").
+			Joins("LEFT JOIN appointment_statuses ON appointment_statuses.id=appointments.appointment_status_id").
+			Joins("LEFT JOIN specialties ON specialties.id=appointments.specialty_id").
+			Where("patients.first_name ILIKE ? OR patients.middle_name ILIKE ? OR patients.last_name ILIKE ? OR patients.email ILIKE ? OR patients.phone ILIKE ? OR appointment_statuses.title ILIKE ? OR doctors.first_name ILIKE ? OR doctors.last_name ILIKE ? OR appointments.slug ILIKE ? OR specialties.name ILIKE ?", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "appointments"))
+			return
+		}
+	} else {
+		if input.AppointmentStatusID != "" {
+			scopes = append(scopes, input.AppointmentStatusFilter)
+		}
+		if input.AppointmentDoctorID != "" {
+			scopes = append(scopes, input.AppointmentDoctorFilter)
+		}
+		if input.DateRange != "" {
+			scopes = append(scopes, input.AppointmentBydateRangeFilter)
+		}
+
+		if err := db.
+			Scopes(scopes...).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "appointments"))
+			return
+		}
+	}
+	utilities.Show(c, http.StatusOK, "appointments", entities)
+
 }

@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"ktrhportal/filters"
 	"ktrhportal/middlewares"
 	Appointments "ktrhportal/pkg/appointments"
 	Feedbacks "ktrhportal/pkg/feedback"
@@ -14,9 +15,11 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 	{
 		settings.POST("/book-appointment", Appointments.AddAppointment)
 		settings.GET("/appointments", middlewares.AuthMiddleware(), Appointments.GetAppointments)
+		settings.GET("/all_appointments", middlewares.BindInput(filters.AppointmentsFilter{}), Appointments.AllAppointments)
 
 		//patients
 		settings.GET("/patients", middlewares.AuthMiddleware(), Patients.GetPatients)
+		settings.GET("/all_patients", middlewares.BindInput(filters.PatientsFilter{}), Patients.AllPatients)
 		settings.POST("/patient", Patients.GetPatient)
 
 		//Feedbacks

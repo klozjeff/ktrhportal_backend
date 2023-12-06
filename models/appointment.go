@@ -15,16 +15,16 @@ type Appointment struct {
 	TimeOfAppointment   string    `json:"toa"`
 	SpecialtyID         string    `json:"specialty"`
 	Specialty           *Specialty
-	DoctorID            string `json:"doctor"`
+	DoctorID            string `json:"doctor_id"`
 	Doctor              *Doctor
 	SeekingCareFor      string                    `json:"seeking_care_for"`
-	RelationshipID      string                    `json:"relationship_id"`
+	RelationshipID      *string                   `json:"relationship_id"`
 	Relationship        *Relationship             `json:"relationship"`
-	AppointmentStatusID string                    `json:"account_status_id"`
+	AppointmentStatusID string                    `json:"appointment_status_id"`
 	AppointmentStatus   *AppointmentStatus        `json:"status"`
 	PaymentMethodID     string                    `json:"payment_method_id"`
 	PaymentMethod       *AppointmentPaymentMethod `json:"payment_methods"`
-	InsuraceProviderID  string                    `json:"insurance_provider_id"`
+	InsuraceProviderID  *string                   `json:"insurance_provider_id"`
 	InsuraceProvider    *InsuranceProvider        `json:"insurance_providers"`
 	Slug                string                    `json:"slug" binding:"required" gorm:"unique"`
 	CreatedAt           time.Time                 `json:"-"`

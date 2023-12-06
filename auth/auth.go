@@ -92,3 +92,13 @@ func GetEntityIDBySlug(model interface{}, slug string) string {
 	database.DB.Model(&model).Where("slug=?", slug).Select("id").First(&id)
 	return id
 }
+
+func CurrentUser(c *gin.Context) {
+	var user models.User
+	db := database.DB
+	if err := db.Where("id = ?", middlewares.GetAuthUserID(c)).Preload(clause.Associations).First(&user).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "me", user)
+}

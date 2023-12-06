@@ -19,13 +19,14 @@ func init() {
 var AllowedOrigins = []string{
 	"http://ktrh.tsavoerp.com",
 	"http://localhost:8999",
+	"http://localhost:9000",
 	"http://ktrhportal.tsavoerp.com",
 }
 
 var AllowedHeaders = []string{
 	"Authorization", "Accept", "Accept-Charset", "Accept-Language",
 	"Accept-Encoding", "Origin", "Host", "User-Agent", "Content-Length",
-	"Content-Type", " X-Authorization", " Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers",
+	"Content-Type", " X-Authorization", "XMLHttpRequest", " Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Access-Control-Allow-Private-Network",
 }
 
 func main() {

@@ -2,12 +2,14 @@ package settings
 
 import (
 	"ktrhportal/database"
+	"ktrhportal/filters"
 	"ktrhportal/middlewares"
 	"ktrhportal/models"
 	"ktrhportal/pkg/appointments"
 	"ktrhportal/utilities"
 	"net/http"
 
+	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm/clause"
 )
@@ -54,6 +56,17 @@ func GetAccountStatuses(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "account statuses", entities)
 }
+func GetAppointmentStatuses(c *gin.Context) {
+	db := database.DB
+	var entities []models.AppointmentStatus
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "appointment statuses", entities)
+}
+
 func GetLanguages(c *gin.Context) {
 	db := database.DB
 	var entities []models.Language
@@ -138,6 +151,30 @@ func GetSpecialities(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "specialities", specialities)
 
+}
+
+func AllSpecialties(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.SpecialtiesFilter)
+	db := database.DB
+	var entities []models.Specialty
+	if (filters.SpecialtiesFilter{}) == *input {
+		if err := db.
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "specialties"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Where("specialties.name ILIKE ?", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "specialties"))
+			return
+		}
+	}
+	utilities.Show(c, http.StatusOK, "specialties", entities)
 }
 
 // Doctors
@@ -243,4 +280,29 @@ func GetDoctorDetails(c *gin.Context) {
 	db := database.DB
 	db.Where(payload.SearchParam+" = ?", payload.SearchVal).Preload(clause.Associations).First(&entities)
 	utilities.Show(c, http.StatusOK, "success", entities)
+}
+
+func AllDoctors(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.DoctorsFilter)
+	db := database.DB
+	var entities []models.Doctor
+	if (filters.DoctorsFilter{}) == *input {
+		if err := db.
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "doctors"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Joins("LEFT JOIN specialties ON specialties.id=doctors.specialty_id").
+			Where("doctors.first_name ILIKE ? OR doctors.last_name ILIKE ? OR doctors.email ILIKE ? OR doctors.phone ILIKE ? OR specialties.name ILIKE ?", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "doctors"))
+			return
+		}
+	}
+	utilities.Show(c, http.StatusOK, "doctors", entities)
 }
