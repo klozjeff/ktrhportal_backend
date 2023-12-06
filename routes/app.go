@@ -25,6 +25,7 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		//Feedbacks
 		settings.GET("/feedbacks", middlewares.AuthMiddleware(), Feedbacks.GetFeedbacks)
 		settings.POST("/add_feedback", Feedbacks.AddFeedback)
+		settings.GET("/all_feedbacks", middlewares.BindInput(filters.FeedbacksFilter{}), Feedbacks.AllFeedbacks)
 
 	}
 }

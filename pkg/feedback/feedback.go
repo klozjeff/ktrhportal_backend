@@ -2,10 +2,12 @@ package feedback
 
 import (
 	"ktrhportal/database"
+	"ktrhportal/filters"
 	"ktrhportal/models"
 	"ktrhportal/utilities"
 	"net/http"
 
+	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm/clause"
 )
@@ -79,4 +81,28 @@ func GetFeedbacks(c *gin.Context) {
 		return
 	}
 	utilities.Show(c, http.StatusOK, "feedbacks", feedbacks)
+}
+
+func AllFeedbacks(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.FeedbacksFilter)
+	db := database.DB
+	var entities []models.PatientFeedback
+	if (filters.FeedbacksFilter{}) == *input {
+		if err := db.
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "feedbacks"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Where("patient_feedbacks.full_name ILIKE ?", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "feedbacks"))
+			return
+		}
+	}
+	utilities.Show(c, http.StatusOK, "feedbacks", entities)
 }

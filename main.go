@@ -20,6 +20,9 @@ var AllowedOrigins = []string{
 	"http://ktrh.tsavoerp.com",
 	"http://localhost:8999",
 	"http://localhost:9000",
+	"http://102.37.201.86",
+	"http://ktrh.go.ke",
+	"http://ktrh.or.ke",
 	"http://ktrhportal.tsavoerp.com",
 }
 

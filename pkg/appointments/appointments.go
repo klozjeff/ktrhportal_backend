@@ -71,9 +71,9 @@ func AddAppointment(c *gin.Context) {
 		RelationshipID:      &payload.Relationship,
 		AppointmentStatusID: GetEntityIDBySlug(models.AppointmentStatus{}, "new"),
 		InsuraceProviderID:  &payload.InsuranceProvider,
-		PaymentMethodID:     payload.PaymentMethod,
+		PaymentMethodID:     GetEntityIDBySlug(models.AppointmentPaymentMethod{}, payload.PaymentMethod),
 		Slug:                appointmentCode,
-		Patient:             &patient,
+		PatientID:           patient.ID.String(),
 	}
 
 	if err := db.Create(&appointment).Error; err != nil {
