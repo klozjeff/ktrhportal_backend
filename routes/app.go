@@ -4,6 +4,7 @@ import (
 	"ktrhportal/filters"
 	"ktrhportal/middlewares"
 	Appointments "ktrhportal/pkg/appointments"
+	Donations "ktrhportal/pkg/donations"
 	Feedbacks "ktrhportal/pkg/feedback"
 	Patients "ktrhportal/pkg/patients"
 
@@ -26,6 +27,11 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/feedbacks", middlewares.AuthMiddleware(), Feedbacks.GetFeedbacks)
 		settings.POST("/add_feedback", Feedbacks.AddFeedback)
 		settings.GET("/all_feedbacks", middlewares.BindInput(filters.FeedbacksFilter{}), Feedbacks.AllFeedbacks)
+
+		//Donations
+
+		settings.POST("/add_donation", Donations.AddDonation)
+		settings.GET("/all_donations", middlewares.BindInput(filters.DonationsFilter{}), Donations.AllDonations)
 
 	}
 }
