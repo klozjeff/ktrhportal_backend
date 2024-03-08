@@ -80,13 +80,26 @@ func Login(c *gin.Context) {
 	}
 	token, _ := middlewares.GenerateToken(user.ID.String(), user.RoleID)
 	refreshToken, _ := middlewares.GenerateRefreshToken(user.ID.String(), user.RoleID)
+
+	utilities.SetCookie(c, "token", token, time.Now().Add(time.Hour*1))
+
 	utilities.Show(c, http.StatusOK, "Logged in successfully", map[string]interface{}{
 		"token":         token,
 		"refresh_token": refreshToken,
+		"id":            user.ID,
+		"name":          user.Name,
+		"email":         user.Email,
+		"phone":         user.Phone,
 		"username":      user.Username,
 		"role":          user.Role.Title,
+		"status":        user.AccountStatus.Slug,
 	})
+
+	/*c.JSON(http.StatusOK, gin.H{
+		"token": token,
+	})*/
 }
+
 func GetEntityIDBySlug(model interface{}, slug string) string {
 	var id string
 	database.DB.Model(&model).Where("slug=?", slug).Select("id").First(&id)

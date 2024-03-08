@@ -20,16 +20,17 @@ var AllowedOrigins = []string{
 	"http://ktrh.tsavoerp.com",
 	"http://localhost:8999",
 	"http://localhost:9000",
+	"http://localhost:5173",
 	"http://102.37.201.86",
-	"http://ktrh.go.ke",
-	"http://ktrh.or.ke",
+	"http://localhost:4001",
+	"https://ktrh.go.ke",
 	"http://ktrhportal.tsavoerp.com",
 }
 
 var AllowedHeaders = []string{
 	"Authorization", "Accept", "Accept-Charset", "Accept-Language",
 	"Accept-Encoding", "Origin", "Host", "User-Agent", "Content-Length",
-	"Content-Type", " X-Authorization", "XMLHttpRequest", " Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Access-Control-Allow-Private-Network",
+	"Content-Type", " X-Authorization", "XMLHttpRequest", "Access-Control-Expose-Headers", " Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Access-Control-Allow-Private-Network",
 }
 
 func main() {
