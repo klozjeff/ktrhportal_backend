@@ -122,7 +122,7 @@ func GetCountries(c *gin.Context) {
 			return
 		}
 	}
-	services.PaginationResponse(db, c, http.StatusOK, "specialties", entities, models.Specialty{})
+	services.PaginationResponse(db, c, http.StatusOK, "countries", entities, models.Specialty{})
 }
 
 func GetCounties(c *gin.Context) {
