@@ -4,6 +4,7 @@ import (
 	"ktrhportal/database"
 	"ktrhportal/filters"
 	"ktrhportal/models"
+	"ktrhportal/services"
 	"ktrhportal/utilities"
 	"net/http"
 
@@ -47,6 +48,7 @@ func AllPatients(c *gin.Context) {
 	var entities []models.Patient
 	if (filters.PatientsFilter{}) == *input {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "patients"))
@@ -54,6 +56,7 @@ func AllPatients(c *gin.Context) {
 		}
 	} else if input.Global != "" {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Joins("LEFT JOIN genders ON genders.id=patients.gender_id").
 			Joins("LEFT JOIN languages ON languages.id=patients.language_id").
 			Joins("LEFT JOIN counties ON counties.id=patients.county_id").
@@ -65,6 +68,45 @@ func AllPatients(c *gin.Context) {
 			return
 		}
 	}
-	utilities.Show(c, http.StatusOK, "patients", entities)
+	//utilities.Show(c, http.StatusOK, "patients", entities)
+	services.PaginationResponse(db, c, http.StatusOK, "patients", entities, models.Patient{})
 
+}
+
+func AddPatient(c *gin.Context) {
+	var payload struct {
+		FirstName  string `json:"first_name" binding:"required"`
+		MiddleName string `json:"middle_name"`
+		LastName   string `json:"last_name" binding:"required"`
+		Phone      string `json:"phone" binding:"required"`
+		Email      string `json:"email" binding:"required"`
+		Gender     string `json:"gender" binding:"required"`
+		Language   string `json:"language" binding:"required"`
+		Address    string `json:"physical_address"`
+		County     string `json:"county" binding:"required"`
+		SubCounty  string `json:"sub_county" binding:"required"`
+	}
+	if validationError := c.ShouldBindJSON(&payload); validationError != nil {
+		utilities.ErrrsList = append(utilities.ErrrsList, utilities.Validate(validationError)...)
+		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
+		return
+	}
+	db := database.DB
+	patient := models.Patient{
+		FirstName:   payload.FirstName,
+		MiddleName:  payload.MiddleName,
+		LastName:    payload.LastName,
+		Phone:       payload.Phone,
+		Email:       payload.Email,
+		GenderID:    payload.Gender,
+		LanguageID:  payload.Language,
+		Address:     payload.Address,
+		CountyID:    payload.County,
+		SubCountyID: payload.SubCounty,
+	}
+	if err := db.Create(&patient).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "Patient information added successfully", patient)
 }

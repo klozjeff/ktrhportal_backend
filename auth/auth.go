@@ -6,6 +6,7 @@ import (
 	"ktrhportal/models"
 	"ktrhportal/utilities"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -82,7 +83,6 @@ func Login(c *gin.Context) {
 	refreshToken, _ := middlewares.GenerateRefreshToken(user.ID.String(), user.RoleID)
 
 	utilities.SetCookie(c, "token", token, time.Now().Add(time.Hour*1))
-
 	utilities.Show(c, http.StatusOK, "Logged in successfully", map[string]interface{}{
 		"token":         token,
 		"refresh_token": refreshToken,
@@ -114,4 +114,14 @@ func CurrentUser(c *gin.Context) {
 		return
 	}
 	utilities.Show(c, http.StatusOK, "me", user)
+}
+
+func Logout(c *gin.Context) {
+	tokenString := c.GetHeader("Authorization")
+	tokenString = strings.Split(tokenString, "Bearer ")[1]
+	if err := middlewares.InvalidateToken(tokenString); err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.ShowMessage(c, http.StatusOK, "Successfully logged out")
 }

@@ -11,7 +11,7 @@ import (
 func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 	settings := appRoute.Group("/settings")
 	{
-		settings.POST("/specialty", middlewares.AuthMiddleware(), Settings.AddSpecialty)
+		settings.POST("/add_specialty", middlewares.AuthMiddleware(), Settings.AddSpecialty)
 		settings.GET("/specialities", Settings.GetSpecialities)
 		settings.GET("/all_specialties", middlewares.BindInput(filters.SpecialtiesFilter{}), Settings.AllSpecialties)
 
@@ -29,6 +29,7 @@ func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/languages", Settings.GetLanguages)
 		settings.GET("/insurance_providers", Settings.GetInsuranceProviders)
 		settings.GET("/payment_methods", Settings.GetPaymentMethods)
+		settings.GET("/countries", middlewares.BindInput(filters.CountriesFilter{}), Settings.GetCountries)
 		settings.GET("/counties", Settings.GetCounties)
 		settings.GET("/sub_counties/:county_slug", Settings.GetSubCounties)
 		settings.GET("/appointment_statuses", Settings.GetAppointmentStatuses)

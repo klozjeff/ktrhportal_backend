@@ -13,5 +13,7 @@ func SetupAuthRoutes(appRoute *gin.RouterGroup) {
 		auth.POST("/login", Auth.Login)
 		auth.POST("/register", Auth.Register)
 		auth.GET("/currentuser", middlewares.AuthMiddleware(), Auth.CurrentUser)
+		auth.POST("/logout", middlewares.AuthMiddleware(), Auth.Logout)
+
 	}
 }

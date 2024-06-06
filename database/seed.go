@@ -149,6 +149,48 @@ func CreateInsuranceProviderStatusSeeder() {
 
 }
 
+// CreateInsuranceProvidersSeeder creates Providers Seeder
+func CreateAppointmentTypeSeeder() {
+	typeList := [3]string{"Facility visit", "Televisit", "Emergency"}
+	var types []models.AppointmentType
+	if result := DB.Find(&types); result.RowsAffected == 0 {
+		for _, status := range typeList {
+			types = append(types, models.AppointmentType{
+				Title: status,
+			})
+		}
+		DB.Create(&types)
+	}
+
+}
+
+// CreateCountrySeeder countries from json
+func CreateCountrySeeder() {
+	// Open our jsonFile
+	jsonFile, err := os.Open("data/countries.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Opened countries.json")
+	// defer the closing of our jsonFile so that we can parse it later on
+	defer jsonFile.Close()
+
+	// read our opened jsonFile as a byte array.
+	byteValue, _ := io.ReadAll(jsonFile)
+
+	var countries []models.Country
+	if jsonError := json.Unmarshal(byteValue, &countries); jsonError != nil {
+		log.Printf("Error Unmarshaling Json: %s", jsonError.Error())
+	}
+
+	//insert countries into database
+	var countriesIndb []models.Country
+	if result := DB.Find(&countriesIndb); result.RowsAffected == 0 {
+		DB.Create(&countries)
+	}
+
+}
+
 /*
 * CreateCountiesSeeder Seeded
  */

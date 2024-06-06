@@ -123,6 +123,7 @@ func AllAppointments(c *gin.Context) {
 	var scopes []func(*gorm.DB) *gorm.DB
 	if (filters.AppointmentsFilter{}) == *input {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "appointments"))
@@ -130,6 +131,7 @@ func AllAppointments(c *gin.Context) {
 		}
 	} else if input.Global != "" {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Joins("LEFT JOIN patients ON patients.id=appointments.patient_id").
 			Joins("LEFT JOIN doctors ON doctors.id=appointments.doctor_id").
 			Joins("LEFT JOIN appointment_statuses ON appointment_statuses.id=appointments.appointment_status_id").
@@ -141,6 +143,7 @@ func AllAppointments(c *gin.Context) {
 			return
 		}
 	} else {
+
 		if input.AppointmentStatusID != "" {
 			scopes = append(scopes, input.AppointmentStatusFilter)
 		}
@@ -153,12 +156,84 @@ func AllAppointments(c *gin.Context) {
 
 		if err := db.
 			Scopes(scopes...).
+			Scopes(services.Paginate(c)).
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "appointments"))
 			return
 		}
 	}
-	utilities.Show(c, http.StatusOK, "appointments", entities)
+	services.PaginationResponse(db, c, http.StatusOK, "appointments", entities, models.Appointment{})
+
+}
+
+func RecordAppointment(c *gin.Context) {
+	var payload struct {
+		FirstName         string `json:"firstname" binding:"required"`
+		LastName          string `json:"lastname" binding:"required"`
+		Phone             string `json:"phone" binding:"required"`
+		Email             string `json:"emailaddress" binding:"required"`
+		Gender            string `json:"gender" binding:"required"`
+		Address           string `json:"address"`
+		DateOfAppointment string `json:"doa" binding:"required"`
+		TimeOfAppointment string `json:"toa" binding:"required"`
+		Specialty         string `json:"specialty" binding:"required"`
+		Doctor            string `json:"doctor" binding:"required"`
+		PaymentMethod     string `json:"payment_method" binding:"required"`
+		InsuranceProvider string `json:"insurance_provider"`
+	}
+	if validationError := c.ShouldBindJSON(&payload); validationError != nil {
+		utilities.ErrrsList = append(utilities.ErrrsList, utilities.Validate(validationError)...)
+		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
+		return
+	}
+	db := database.DB
+	appointmentCode, err := utilities.GenerateOTP(4)
+	if err != nil {
+		return
+	}
+	//Check if patient exists
+	var patient models.Patient
+	if result := db.Where("phone = ?", payload.Phone).First(&patient); result.RowsAffected <= 0 {
+		patient.FirstName = payload.FirstName
+		patient.MiddleName = ""
+		patient.LastName = payload.LastName
+		patient.Phone = payload.Phone
+		patient.Email = payload.Email
+		patient.GenderID = payload.Gender
+		patient.LanguageID = ""
+		patient.Address = payload.Address
+		patient.CountyID = ""
+		patient.SubCountyID = ""
+		db.Create(&patient)
+	}
+	var relation = "2e0f436f-8f36-45e2-ad1e-2ae56b08d316"
+	appointment := models.Appointment{
+		DateOfAppointment:   payload.DateOfAppointment,
+		TimeOfAppointment:   payload.TimeOfAppointment,
+		SpecialtyID:         payload.Specialty,
+		DoctorID:            payload.Doctor,
+		SeekingCareFor:      "other",
+		RelationshipID:      &relation,
+		AppointmentStatusID: GetEntityIDBySlug(models.AppointmentStatus{}, "new"),
+		InsuraceProviderID:  &payload.InsuranceProvider,
+		PaymentMethodID:     payload.PaymentMethod,
+		Slug:                appointmentCode,
+		PatientID:           patient.ID.String(),
+	}
+
+	if err := db.Create(&appointment).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	//Send Notifications
+	//msg := "Dear " + payload.FirstName + ",your appointment booking has been sent successfully. We will get back as soon as possible for confirmation. Appointment tracking code is " + appointmentCode
+	//msg := fmt.Sprintf("Dear %s,your appointment booking has been sent successfully. We will get back as soon as possible for confirmation. Appointment tracking code is %s", payload.FirstName, appointmentCode)
+	//if _, err := SendSMSNotification(payload.Phone, msg); err != nil {
+	//utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+	//return
+	//}
+
+	utilities.Show(c, http.StatusOK, "patient appointment added successfully", appointment)
 
 }

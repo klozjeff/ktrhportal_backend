@@ -80,13 +80,14 @@ func Connect() {
 				models.Language{},
 				models.PatientFeedback{},
 				models.Donation{},
+				models.AppointmentType{},
+				models.Country{},
 			)
 		}
 
 		//Run Auto Migration
 		if migrate {
 			result := db.AutoMigrate(
-
 				models.User{},
 				models.Gender{},
 				models.Role{},
@@ -105,6 +106,8 @@ func Connect() {
 				models.Language{},
 				models.PatientFeedback{},
 				models.Donation{},
+				models.AppointmentType{},
+				models.Country{},
 			)
 			if result != nil {
 				log.Print(result.Error())
@@ -122,6 +125,8 @@ func Connect() {
 			CreateLanguagesSeeder()
 			CreateInsuranceProviderStatusSeeder()
 			CreateInsuranceProvidersSeeder()
+			CreateAppointmentTypeSeeder()
+			CreateCountrySeeder()
 
 		}
 

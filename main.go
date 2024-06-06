@@ -17,14 +17,11 @@ func init() {
 }
 
 var AllowedOrigins = []string{
-	"http://ktrh.tsavoerp.com",
-	"http://localhost:8999",
 	"http://localhost:9000",
 	"http://localhost:5173",
-	"http://102.37.201.86",
-	"http://localhost:4001",
 	"https://ktrh.go.ke",
-	"http://ktrhportal.tsavoerp.com",
+	"http://portal.ktrh.go.ke",
+	"https://portal.ktrh.go.ke",
 }
 
 var AllowedHeaders = []string{

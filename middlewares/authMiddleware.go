@@ -1,9 +1,11 @@
 package middlewares
 
 import (
+	"errors"
 	"net/http"
 	"os"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +18,18 @@ type Claims struct {
 	Username string `json:"username"`
 	Role     string `json:"role"`
 	jwt.StandardClaims
+}
+
+var blacklist = struct {
+	sync.RWMutex
+	tokens map[string]struct{}
+}{tokens: make(map[string]struct{})}
+
+func tokenIsBlacklisted(token string) bool {
+	blacklist.RLock()
+	defer blacklist.RUnlock()
+	_, exists := blacklist.tokens[token]
+	return exists
 }
 
 func GenerateToken(username string, role string) (string, error) {
@@ -61,10 +75,21 @@ func validateToken(tokenString string) (*Claims, error) {
 		return nil, err
 	}
 	if claims, ok := token.Claims.(*Claims); ok && token.Valid {
-
+		// Check if the token has been revoked
+		isRevoked := tokenIsBlacklisted(tokenString)
+		if isRevoked {
+			return nil, errors.New("token is revoked")
+		}
 		return claims, nil
 	}
 	return nil, err
+}
+
+func InvalidateToken(tokenString string) error {
+	blacklist.Lock()
+	defer blacklist.Unlock()
+	blacklist.tokens[tokenString] = struct{}{}
+	return nil
 }
 
 func GetAuthUserID(c *gin.Context) string {

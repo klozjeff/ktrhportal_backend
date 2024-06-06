@@ -6,11 +6,13 @@ import (
 	"ktrhportal/middlewares"
 	"ktrhportal/models"
 	"ktrhportal/pkg/appointments"
+	"ktrhportal/services"
 	"ktrhportal/utilities"
 	"net/http"
 
 	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
@@ -97,6 +99,32 @@ func GetInsuranceProviders(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "providers", entities)
 }
+func GetCountries(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.CountriesFilter)
+	db := database.DB
+	var entities []models.Country
+	if (filters.CountriesFilter{}) == *input {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "countries"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Where("countries.country_name ILIKE ?", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "countries"))
+			return
+		}
+	}
+	services.PaginationResponse(db, c, http.StatusOK, "specialties", entities, models.Specialty{})
+}
+
 func GetCounties(c *gin.Context) {
 	db := database.DB
 	var entities []models.County
@@ -107,6 +135,7 @@ func GetCounties(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "counties", entities)
 }
+
 func GetSubCounties(c *gin.Context) {
 	db := database.DB
 	var entities []models.SubCounty
@@ -160,6 +189,7 @@ func AllSpecialties(c *gin.Context) {
 	var entities []models.Specialty
 	if (filters.SpecialtiesFilter{}) == *input {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "specialties"))
@@ -167,6 +197,7 @@ func AllSpecialties(c *gin.Context) {
 		}
 	} else if input.Global != "" {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Where("specialties.name ILIKE ?", "%"+input.Global+"%").
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
@@ -174,7 +205,8 @@ func AllSpecialties(c *gin.Context) {
 			return
 		}
 	}
-	utilities.Show(c, http.StatusOK, "specialties", entities)
+	services.PaginationResponse(db, c, http.StatusOK, "specialties", entities, models.Specialty{})
+	//utilities.Show(c, http.StatusOK, "specialties", entities)
 }
 
 // Doctors
@@ -239,6 +271,7 @@ func GetDoctor(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "success", doctor)
 }
+
 func GetDoctorBySpecialty(c *gin.Context) {
 	var entities []models.Doctor
 	db := database.DB
@@ -287,8 +320,10 @@ func AllDoctors(c *gin.Context) {
 	input := c.Request.Context().Value(httpin.Input).(*filters.DoctorsFilter)
 	db := database.DB
 	var entities []models.Doctor
+	var scopes []func(*gorm.DB) *gorm.DB
 	if (filters.DoctorsFilter{}) == *input {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Preload(clause.Associations).
 			Find(&entities).Error; err != nil {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "doctors"))
@@ -296,6 +331,7 @@ func AllDoctors(c *gin.Context) {
 		}
 	} else if input.Global != "" {
 		if err := db.
+			Scopes(services.Paginate(c)).
 			Joins("LEFT JOIN specialties ON specialties.id=doctors.specialty_id").
 			Where("doctors.first_name ILIKE ? OR doctors.last_name ILIKE ? OR doctors.email ILIKE ? OR doctors.phone ILIKE ? OR specialties.name ILIKE ?", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%", "%"+input.Global+"%").
 			Preload(clause.Associations).
@@ -303,6 +339,22 @@ func AllDoctors(c *gin.Context) {
 			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "doctors"))
 			return
 		}
+	} else {
+
+		if input.SpecialtyID != "" {
+			scopes = append(scopes, input.SpecialtyFilter)
+		}
+		if err := db.
+			Scopes(scopes...).
+			Scopes(services.Paginate(c)).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "doctors"))
+			return
+		}
 	}
-	utilities.Show(c, http.StatusOK, "doctors", entities)
+
+	services.PaginationResponse(db, c, http.StatusOK, "doctors", entities, models.Doctor{})
+
+	//utilities.Show(c, http.StatusOK, "doctors", entities)
 }
