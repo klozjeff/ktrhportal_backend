@@ -5,6 +5,7 @@ import (
 	"ktrhportal/middlewares"
 	Appointments "ktrhportal/pkg/appointments"
 	Donations "ktrhportal/pkg/donations"
+	Encounters "ktrhportal/pkg/encounters"
 	Feedbacks "ktrhportal/pkg/feedback"
 	Patients "ktrhportal/pkg/patients"
 
@@ -18,6 +19,7 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.POST("/add_appointment", Appointments.RecordAppointment)
 		settings.GET("/appointments", middlewares.AuthMiddleware(), Appointments.GetAppointments)
 		settings.GET("/all_appointments", middlewares.BindInput(filters.AppointmentsFilter{}), Appointments.AllAppointments)
+		settings.GET("/appointments/:id", middlewares.AuthMiddleware(), Appointments.GetAppointmentDetails)
 
 		//patients
 		settings.GET("/patients", middlewares.AuthMiddleware(), Patients.GetPatients)
@@ -33,6 +35,11 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		//Donations
 		settings.POST("/add_donation", Donations.AddDonation)
 		settings.GET("/all_donations", middlewares.BindInput(filters.DonationsFilter{}), Donations.AllDonations)
+
+		//Encounters
+		settings.POST("/add_encounter", middlewares.AuthMiddleware(), Encounters.AddEncounter)
+		settings.GET("/encounters", middlewares.BindInput(filters.EncountersFilter{}), Encounters.ListEncounters)
+		settings.GET("/encounters/:id", middlewares.AuthMiddleware(), Encounters.GetEncounterDetails)
 
 	}
 }

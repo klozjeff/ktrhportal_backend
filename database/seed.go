@@ -164,6 +164,20 @@ func CreateAppointmentTypeSeeder() {
 
 }
 
+// CreateEncounterStatusSeeder creates Encounter Status Seeder
+func CreateEncounterStatusSeeder() {
+	statusList := [4]string{"New", "Inprogress", "Onhold", "Completed"}
+	var statuses []models.EncounterStatus
+	if result := DB.Find(&statuses); result.RowsAffected == 0 {
+		for _, status := range statusList {
+			statuses = append(statuses, models.EncounterStatus{
+				Title: status,
+			})
+		}
+		DB.Create(&statuses)
+	}
+}
+
 // CreateCountrySeeder countries from json
 func CreateCountrySeeder() {
 	// Open our jsonFile

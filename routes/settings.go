@@ -30,9 +30,11 @@ func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/insurance_providers", Settings.GetInsuranceProviders)
 		settings.GET("/payment_methods", Settings.GetPaymentMethods)
 		settings.GET("/countries", middlewares.BindInput(filters.CountriesFilter{}), Settings.GetCountries)
-		settings.GET("/counties", Settings.GetCounties)
-		settings.GET("/sub_counties/:county_slug", Settings.GetSubCounties)
+		settings.GET("/counties", middlewares.BindInput(filters.CountiesFilter{}), Settings.GetCounties)
+		settings.GET("/sub_counties/:county_slug", Settings.GetSubcounties)
+		settings.GET("/subcounties", middlewares.BindInput(filters.SubCountiesFilter{}), Settings.GetSubCounties)
 		settings.GET("/appointment_statuses", Settings.GetAppointmentStatuses)
+		settings.GET("/encounter_statuses", Settings.GetEncounterStatuses)
 
 	}
 }

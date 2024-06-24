@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -89,4 +90,13 @@ func buildCookie(name string, value string, expires int) *http.Cookie {
 	}
 
 	return cookie
+}
+
+func GenerateAutoIncrementNumber(modelCount int) string {
+	today := time.Now()
+	day := today.Day()
+	month := today.Month()
+	monthString := fmt.Sprintf("%02d", month)
+	year := today.Year()
+	return fmt.Sprintf("%d%s%s%003d", day, monthString, strconv.Itoa(year)[2:], modelCount)
 }

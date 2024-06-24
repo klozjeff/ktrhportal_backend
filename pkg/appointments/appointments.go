@@ -237,3 +237,16 @@ func RecordAppointment(c *gin.Context) {
 	utilities.Show(c, http.StatusOK, "patient appointment added successfully", appointment)
 
 }
+
+func GetAppointmentDetails(c *gin.Context) {
+	db := database.DB
+	var appointment models.Appointment
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		Preload(clause.Associations).
+		First(&appointment).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "success", appointment)
+}

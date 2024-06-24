@@ -69,6 +69,17 @@ func GetAppointmentStatuses(c *gin.Context) {
 	utilities.Show(c, http.StatusOK, "appointment statuses", entities)
 }
 
+func GetEncounterStatuses(c *gin.Context) {
+	db := database.DB
+	var entities []models.EncounterStatus
+
+	if err := db.Find(&entities).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusFound, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "encounter statuses", entities)
+}
+
 func GetLanguages(c *gin.Context) {
 	db := database.DB
 	var entities []models.Language
@@ -122,21 +133,74 @@ func GetCountries(c *gin.Context) {
 			return
 		}
 	}
-	services.PaginationResponse(db, c, http.StatusOK, "countries", entities, models.Specialty{})
+	services.PaginationResponse(db, c, http.StatusOK, "countries", entities, models.Country{})
 }
 
 func GetCounties(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.CountiesFilter)
 	db := database.DB
 	var entities []models.County
-
-	if err := db.Find(&entities).Error; err != nil {
-		utilities.ShowMessage(c, http.StatusFound, err.Error())
-		return
+	if (filters.CountiesFilter{}) == *input {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "counties"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Where("counties.name ILIKE ?", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "counties"))
+			return
+		}
 	}
-	utilities.Show(c, http.StatusOK, "counties", entities)
+	services.PaginationResponse(db, c, http.StatusOK, "counties", entities, models.County{})
 }
 
 func GetSubCounties(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.SubCountiesFilter)
+	db := database.DB
+	var entities []models.SubCounty
+	if (filters.SubCountiesFilter{}) == *input {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "sub-counties"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Where("sub_counties.name ILIKE ?", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "sub-counties"))
+			return
+		}
+	}
+	services.PaginationResponse(db, c, http.StatusOK, "sub-counties", entities, models.SubCounty{})
+}
+
+/*
+	func GetCounties(c *gin.Context) {
+		db := database.DB
+		var entities []models.County
+
+		if err := db.Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusFound, err.Error())
+			return
+		}
+		utilities.Show(c, http.StatusOK, "counties", entities)
+	}
+*/
+func GetSubcounties(c *gin.Context) {
 	db := database.DB
 	var entities []models.SubCounty
 	if err := db.Where("county=?", c.Param("county_slug")).Preload(clause.Associations).Find(&entities).Error; err != nil {

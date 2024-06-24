@@ -82,6 +82,8 @@ func Connect() {
 				models.Donation{},
 				models.AppointmentType{},
 				models.Country{},
+				models.Encounter{},
+				models.EncounterStatus{},
 			)
 		}
 
@@ -108,6 +110,8 @@ func Connect() {
 				models.Donation{},
 				models.AppointmentType{},
 				models.Country{},
+				models.Encounter{},
+				models.EncounterStatus{},
 			)
 			if result != nil {
 				log.Print(result.Error())
@@ -127,6 +131,7 @@ func Connect() {
 			CreateInsuranceProvidersSeeder()
 			CreateAppointmentTypeSeeder()
 			CreateCountrySeeder()
+			CreateEncounterStatusSeeder()
 
 		}
 
