@@ -24,7 +24,7 @@ type Encounter struct {
 	StatusId           string           `json:"-"`
 	Status             *EncounterStatus `json:"encounter_status"`
 	CreatedBy          string           `json:"created_by"`
-	Notes              []Note           `json:"notes" gorm:"foreignKey:EncounterID"`
+	Notes              *[]Note          `json:"notes" gorm:"many2many:encounter_notes"`
 	CreatedAt          time.Time        `json:"-"`
 	UpdatedAt          time.Time        `json:"-"`
 	DeletedAt          gorm.DeletedAt   `json:"-"`
@@ -53,10 +53,11 @@ func (encounter *Encounter) BeforeCreate(scope *gorm.DB) error {
 
 type Note struct {
 	ID          uuid.UUID `json:"id" gorm:"primary_key"`
-	EncounterID uuid.UUID `json:"encounter_id" gorm:"type:uuid"`
-	Title       string    `json:"title"`
-	Content     string    `json:"content"`
-	CreatedBy   string    `json:"created_by"`
+	EncounterID string    `json:"-"`
+	Encounter   *Encounter
+	Title       string `json:"title"`
+	Content     string `json:"content"`
+	CreatedBy   string `json:"created_by"`
 }
 
 func (note *Note) BeforeCreate(scope *gorm.DB) error {
