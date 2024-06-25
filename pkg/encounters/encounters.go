@@ -42,7 +42,11 @@ func AddEncounter(c *gin.Context) {
 		return
 	}
 
-	utilities.Show(c, http.StatusOK, "Patient information added successfully", encounter)
+	utilities.Show(c, http.StatusOK, "Encounter created successfully", map[string]interface{}{
+		"id":           encounter.ID,
+		"encounter_no": encounter.EncounterNumber,
+	})
+
 }
 
 func ListEncounters(c *gin.Context) {

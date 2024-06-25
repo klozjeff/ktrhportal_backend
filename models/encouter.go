@@ -52,12 +52,12 @@ func (encounter *Encounter) BeforeCreate(scope *gorm.DB) error {
 }
 
 type Note struct {
-	ID          uuid.UUID `json:"id" gorm:"primary_key"`
-	EncounterID string    `json:"-"`
-	Encounter   *Encounter
-	Title       string `json:"title"`
-	Content     string `json:"content"`
-	CreatedBy   string `json:"created_by"`
+	ID          uuid.UUID  `json:"id" gorm:"primary_key"`
+	EncounterID string     `json:"-"`
+	Encounter   *Encounter `json:"-"`
+	Title       string     `json:"title"`
+	Content     string     `json:"content"`
+	CreatedBy   string     `json:"created_by"`
 }
 
 func (note *Note) BeforeCreate(scope *gorm.DB) error {
