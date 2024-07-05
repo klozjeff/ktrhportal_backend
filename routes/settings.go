@@ -14,6 +14,7 @@ func SetupSettingRoutes(appRoute *gin.RouterGroup) {
 		settings.POST("/add_specialty", middlewares.AuthMiddleware(), Settings.AddSpecialty)
 		settings.GET("/specialities", Settings.GetSpecialities)
 		settings.GET("/all_specialties", middlewares.BindInput(filters.SpecialtiesFilter{}), Settings.AllSpecialties)
+		settings.GET("/specialities/:id", middlewares.AuthMiddleware(), Settings.GetSpecialtyDetails)
 
 		settings.POST("/doctor", middlewares.AuthMiddleware(), Settings.AddDoctor)
 		settings.GET("/doctors", Settings.GetDoctors)

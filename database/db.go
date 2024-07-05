@@ -85,6 +85,12 @@ func Connect() {
 				models.Encounter{},
 				models.EncounterStatus{},
 				models.Note{},
+				models.Provider{},
+				models.ProviderSchedules{},
+				models.ProviderServices{},
+				models.Client{},
+				models.ClientPeople{},
+				models.Service{},
 			)
 		}
 
@@ -114,6 +120,11 @@ func Connect() {
 				models.Encounter{},
 				models.EncounterStatus{},
 				models.Note{},
+				models.ProviderSchedules{},
+				models.ProviderServices{},
+				models.Client{},
+				models.ClientPeople{},
+				models.Service{},
 			)
 			if result != nil {
 				log.Print(result.Error())

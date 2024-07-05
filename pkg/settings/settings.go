@@ -272,6 +272,18 @@ func AllSpecialties(c *gin.Context) {
 	services.PaginationResponse(db, c, http.StatusOK, "specialties", entities, models.Specialty{})
 	//utilities.Show(c, http.StatusOK, "specialties", entities)
 }
+func GetSpecialtyDetails(c *gin.Context) {
+	db := database.DB
+	var specialty models.Specialty
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		Preload(clause.Associations).
+		First(&specialty).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "success", specialty)
+}
 
 // Doctors
 func AddDoctor(c *gin.Context) {
