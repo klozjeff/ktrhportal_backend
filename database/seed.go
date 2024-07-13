@@ -76,7 +76,7 @@ func CreateAccountStatusSeeder() {
 
 // CreateAppointmentStatusSeeder creates statuses Seeder
 func CreateAppointmentStatusSeeder() {
-	statusList := [4]string{"New", "Rescheduled", "Completed", "Cancelled"}
+	statusList := [6]string{"Requested", "Confirmed", "Rescheduled", "Completed", "Cancelled", "No Show"}
 	var statuses []models.AppointmentStatus
 	if result := DB.Find(&statuses); result.RowsAffected == 0 {
 		for _, status := range statusList {
@@ -86,7 +86,6 @@ func CreateAppointmentStatusSeeder() {
 		}
 		DB.Create(&statuses)
 	}
-
 }
 
 // CreateLanguagesSeeder creates statuses Seeder

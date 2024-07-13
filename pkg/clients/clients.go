@@ -57,10 +57,10 @@ func AddClient(c *gin.Context) {
 		Email:       &payload.Email,
 		Phone:       payload.Phone,
 		GenderID:    payload.Gender,
-		LanguageID:  payload.Language,
+		LanguageID:  &payload.Language,
 		DateOfBirth: payload.DateOfBirth,
-		Address:     payload.Address,
-		CountryID:   payload.Country,
+		Address:     &payload.Address,
+		CountryID:   &payload.Country,
 		State:       &payload.State,
 		City:        &payload.City,
 		PostalCode:  &payload.PostalCode,
@@ -115,4 +115,17 @@ func ListClients(c *gin.Context) {
 	}
 	services.PaginationResponse(db, c, http.StatusOK, "clients", entities, models.Client{})
 
+}
+
+func GetClientDetails(c *gin.Context) {
+	db := database.DB
+	var client models.Client
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		Preload(clause.Associations).
+		First(&client).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "success", client)
 }

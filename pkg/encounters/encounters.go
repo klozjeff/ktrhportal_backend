@@ -113,3 +113,21 @@ func GetEncounterDetails(c *gin.Context) {
 	}
 	utilities.Show(c, http.StatusOK, "success", encounter)
 }
+
+func DeleteEncounter(c *gin.Context) {
+	db := database.DB
+	var encounter models.Encounter
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		First(&encounter).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if err := db.Delete(&encounter).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	utilities.ShowMessage(c, http.StatusOK, "Encounter deleted successfully")
+}

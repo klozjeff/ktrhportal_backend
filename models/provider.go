@@ -23,7 +23,7 @@ type Provider struct {
 	CreatedBy  string               `json:"created_by"`
 	CreatedAt  time.Time            `json:"-"`
 	UpdatedAt  time.Time            `json:"-"`
-	// DeletedAt  gorm.DeletedAt       `json:"-"`
+	DeletedAt  gorm.DeletedAt       `json:"-"`
 }
 
 func (provider *Provider) BeforeCreate(scope *gorm.DB) error {

@@ -17,11 +17,11 @@ type Client struct {
 	Email       *string         `json:"email_address"`
 	GenderID    string          `json:"-"`
 	Gender      *Gender         `json:"gender"`
-	LanguageID  string          `json:"-"`
+	LanguageID  *string         `json:"-"`
 	Language    *Language       `json:"language"`
 	DateOfBirth string          `json:"dob"`
-	Address     string          `json:"physical_address"`
-	CountryID   string          `json:"-"`
+	Address     *string         `json:"physical_address"`
+	CountryID   *string         `json:"-"`
 	Country     *Country        `json:"country"`
 	City        *string         `json:"city"`
 	State       *string         `json:"state"`
