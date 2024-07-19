@@ -11,6 +11,7 @@ import (
 
 	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -130,4 +131,61 @@ func DeleteEncounter(c *gin.Context) {
 	}
 
 	utilities.ShowMessage(c, http.StatusOK, "Encounter deleted successfully")
+}
+
+// AddNoteToEncounter adds a new note to an existing encounter
+func AddNoteToEncounter(c *gin.Context) {
+	var payload struct {
+		Title       string    `json:"title" binding:"required"`
+		Content     string    `json:"content" binding:"required"`
+		EncounterId uuid.UUID `json:"encounter_id" binding:"required"`
+	}
+	if validationError := c.ShouldBindJSON(&payload); validationError != nil {
+		utilities.ErrrsList = append(utilities.ErrrsList, utilities.Validate(validationError)...)
+		utilities.ShowError(c, http.StatusBadRequest, utilities.ErrrsList)
+		return
+	}
+	db := database.DB
+	note := models.Note{
+		Title:       payload.Title,
+		Content:     payload.Content,
+		EncounterID: &payload.EncounterId,
+		CreatedBy:   middlewares.GetAuthUserID(c),
+	}
+	if err := db.Save(&note).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	utilities.Show(c, http.StatusOK, "Encounter note created successfully", map[string]interface{}{
+		"id": note.ID,
+	})
+}
+
+func ListEncounterNotes(c *gin.Context) {
+	// Retrieve query parameters
+	input := c.Request.Context().Value(httpin.Input).(*filters.NotesFilter)
+	db := database.DB
+	var entities []models.Note
+	if (filters.NotesFilter{}) == *input {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Where("encounter_id = ?", c.Param("id")).
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "notes"))
+			return
+		}
+	} else if input.Global != "" {
+		if err := db.
+			Scopes(services.Paginate(c)).
+			Where("encounter_id = ?", c.Param("id")).
+			Where("notes.title ILIKE ? OR notes.content ILIKE ?", "%"+input.Global+"%", "%"+input.Global+"%").
+			Preload(clause.Associations).
+			Find(&entities).Error; err != nil {
+			utilities.ShowMessage(c, http.StatusOK, utilities.DatabaseErrorHandler(err, "notes"))
+			return
+		}
+	}
+	services.PaginationResponse(db, c, http.StatusOK, "notes", entities, models.Note{})
 }

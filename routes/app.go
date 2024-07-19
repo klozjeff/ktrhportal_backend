@@ -8,6 +8,7 @@ import (
 	Donations "ktrhportal/pkg/donations"
 	Encounters "ktrhportal/pkg/encounters"
 	Feedbacks "ktrhportal/pkg/feedback"
+	Forms "ktrhportal/pkg/formsmanager"
 	Patients "ktrhportal/pkg/patients"
 	Providers "ktrhportal/pkg/providers"
 	Services "ktrhportal/pkg/services"
@@ -48,6 +49,8 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/encounters", middlewares.BindInput(filters.EncountersFilter{}), Encounters.ListEncounters)
 		settings.GET("/encounters/:id", middlewares.AuthMiddleware(), Encounters.GetEncounterDetails)
 		settings.DELETE("/encounters/:id", middlewares.AuthMiddleware(), Encounters.DeleteEncounter)
+		settings.POST("/encounters/append-note", middlewares.AuthMiddleware(), Encounters.AddNoteToEncounter)
+		settings.GET("/encounters/:id/notes", middlewares.BindInput(filters.NotesFilter{}), Encounters.ListEncounterNotes)
 
 		//Providers
 		settings.POST("/add_provider", middlewares.AuthMiddleware(), Providers.AddProvider)
@@ -65,6 +68,14 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/services", middlewares.BindInput(filters.ServicesFilter{}), Services.ListServices)
 		settings.GET("/services/:id", middlewares.AuthMiddleware(), Services.GetServiceDetails)
 		settings.DELETE("/services/:id", middlewares.AuthMiddleware(), Services.DeleteService)
+
+		//Forms
+		settings.POST("/add_template", middlewares.AuthMiddleware(), Forms.AddTemplate)
+		settings.GET("/form_templates", middlewares.BindInput(filters.FormsManagerFilter{}), Forms.ListTemplates)
+		settings.GET("/form_templates/:id", middlewares.AuthMiddleware(), Forms.GetTemplateDetails)
+		settings.POST("/update_template", middlewares.AuthMiddleware(), Forms.UpdateTemplate)
+		settings.POST("/form_submissions", middlewares.AuthMiddleware(), Forms.FormSubmmision)
+		settings.GET("/submissions_data", middlewares.AuthMiddleware(), Forms.ListFormSubmissions)
 
 	}
 }

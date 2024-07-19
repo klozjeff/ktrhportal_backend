@@ -91,6 +91,8 @@ func Connect() {
 				models.Client{},
 				models.ClientPeople{},
 				models.Service{},
+				models.FormTemplate{},
+				models.FormSubmission{},
 			)
 		}
 
@@ -125,6 +127,8 @@ func Connect() {
 				models.Client{},
 				models.ClientPeople{},
 				models.Service{},
+				models.FormTemplate{},
+				models.FormSubmission{},
 			)
 			if result != nil {
 				log.Print(result.Error())

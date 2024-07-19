@@ -52,12 +52,15 @@ func (encounter *Encounter) BeforeCreate(scope *gorm.DB) error {
 }
 
 type Note struct {
-	ID            uuid.UUID  `json:"id" gorm:"primary_key"`
-	EncounterID   *uuid.UUID `json:"encounter_id,omitempty"`
-	AppointmentID *uuid.UUID `json:"appointment_id,omitempty"`
-	Title         string     `json:"title"`
-	Content       string     `json:"content"`
-	CreatedBy     string     `json:"created_by"`
+	ID            uuid.UUID      `json:"id" gorm:"primary_key"`
+	EncounterID   *uuid.UUID     `json:"encounter_id,omitempty"`
+	AppointmentID *uuid.UUID     `json:"appointment_id,omitempty"`
+	Title         string         `json:"title"`
+	Content       string         `json:"content"`
+	CreatedBy     string         `json:"created_by"`
+	CreatedAt     time.Time      `json:"-"`
+	UpdatedAt     time.Time      `json:"-"`
+	DeletedAt     gorm.DeletedAt `json:"-"`
 }
 
 func (note *Note) BeforeCreate(scope *gorm.DB) error {
