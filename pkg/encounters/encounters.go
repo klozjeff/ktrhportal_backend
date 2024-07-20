@@ -189,3 +189,20 @@ func ListEncounterNotes(c *gin.Context) {
 	}
 	services.PaginationResponse(db, c, http.StatusOK, "notes", entities, models.Note{})
 }
+
+func DeleteNote(c *gin.Context) {
+	db := database.DB
+	var note models.Note
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		First(&note).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if err := db.Delete(&note).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.ShowMessage(c, http.StatusOK, "Note deleted successfully")
+}

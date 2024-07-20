@@ -51,6 +51,7 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.DELETE("/encounters/:id", middlewares.AuthMiddleware(), Encounters.DeleteEncounter)
 		settings.POST("/encounters/append-note", middlewares.AuthMiddleware(), Encounters.AddNoteToEncounter)
 		settings.GET("/encounters/:id/notes", middlewares.BindInput(filters.NotesFilter{}), Encounters.ListEncounterNotes)
+		settings.DELETE("/notes/:id", middlewares.AuthMiddleware(), Encounters.DeleteNote)
 
 		//Providers
 		settings.POST("/add_provider", middlewares.AuthMiddleware(), Providers.AddProvider)
@@ -74,8 +75,10 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.GET("/form_templates", middlewares.BindInput(filters.FormsManagerFilter{}), Forms.ListTemplates)
 		settings.GET("/form_templates/:id", middlewares.AuthMiddleware(), Forms.GetTemplateDetails)
 		settings.POST("/update_template", middlewares.AuthMiddleware(), Forms.UpdateTemplate)
+		settings.DELETE("/form_templates/:id", middlewares.AuthMiddleware(), Forms.DeleteTemplate)
 		settings.POST("/form_submissions", middlewares.AuthMiddleware(), Forms.FormSubmmision)
-		settings.GET("/submissions_data", middlewares.AuthMiddleware(), Forms.ListFormSubmissions)
+		settings.GET("/form_submissions", middlewares.AuthMiddleware(), Forms.ListFormSubmissions)
+		settings.DELETE("/form_submissions/:id", middlewares.AuthMiddleware(), Forms.DeleteFormSubmission)
 
 	}
 }

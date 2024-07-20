@@ -29,10 +29,12 @@ func (template *FormTemplate) BeforeCreate(scope *gorm.DB) error {
 
 type FormSubmission struct {
 	ID         uuid.UUID      `json:"id" gorm:"primary_key"`
-	TemplateID uuid.UUID      `json:"-"`
+	TemplateID uuid.UUID      `json:"template_id"`
 	Template   *FormTemplate  `json:"template"`
 	Data       string         `json:"data"` // or `gorm:"type:json"` depending on your database
-	CreatedAt  time.Time      `json:"-"`
+	EntityType *string        `json:"encounter_type"`
+	EntityID   *uuid.UUID     `json:"encounter_id"`
+	CreatedAt  time.Time      `json:"submitted_on"`
 	UpdatedAt  time.Time      `json:"-"`
 	DeletedAt  gorm.DeletedAt `json:"-"`
 }

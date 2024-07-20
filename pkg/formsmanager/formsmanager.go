@@ -95,6 +95,23 @@ func UpdateTemplate(c *gin.Context) {
 	utilities.ShowMessage(c, http.StatusOK, "Form template updated successfully")
 }
 
+func DeleteTemplate(c *gin.Context) {
+	db := database.DB
+	var template models.FormTemplate
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		First(&template).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if err := db.Delete(&template).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.ShowMessage(c, http.StatusOK, "Form template deleted successfully")
+}
+
 func FormSubmmision(c *gin.Context) {
 	var payload models.FormSubmission
 	if err := c.ShouldBindJSON(&payload); err != nil {
@@ -151,4 +168,21 @@ func ListFormSubmissions(c *gin.Context) {
 
 	//c.JSON(http.StatusOK, submissions)
 	utilities.Show(c, http.StatusOK, "submissions", submissions)
+}
+
+func DeleteFormSubmission(c *gin.Context) {
+	db := database.DB
+	var submission models.FormSubmission
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		First(&submission).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if err := db.Delete(&submission).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.ShowMessage(c, http.StatusOK, "Form submission deleted successfully")
 }
