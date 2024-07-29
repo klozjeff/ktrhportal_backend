@@ -5,6 +5,7 @@ import (
 	"ktrhportal/middlewares"
 	Appointments "ktrhportal/pkg/appointments"
 	Clients "ktrhportal/pkg/clients"
+	Dashboard "ktrhportal/pkg/dashboard"
 	Donations "ktrhportal/pkg/donations"
 	Encounters "ktrhportal/pkg/encounters"
 	Feedbacks "ktrhportal/pkg/feedback"
@@ -52,6 +53,7 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.POST("/encounters/append-note", middlewares.AuthMiddleware(), Encounters.AddNoteToEncounter)
 		settings.GET("/encounters/:id/notes", middlewares.BindInput(filters.NotesFilter{}), Encounters.ListEncounterNotes)
 		settings.DELETE("/notes/:id", middlewares.AuthMiddleware(), Encounters.DeleteNote)
+		settings.GET("/notes/:id", middlewares.AuthMiddleware(), Encounters.GetNoteDetails)
 
 		//Providers
 		settings.POST("/add_provider", middlewares.AuthMiddleware(), Providers.AddProvider)
@@ -79,6 +81,9 @@ func SetupAppRoutes(appRoute *gin.RouterGroup) {
 		settings.POST("/form_submissions", middlewares.AuthMiddleware(), Forms.FormSubmmision)
 		settings.GET("/form_submissions", middlewares.AuthMiddleware(), Forms.ListFormSubmissions)
 		settings.DELETE("/form_submissions/:id", middlewares.AuthMiddleware(), Forms.DeleteFormSubmission)
+
+		//Dashboard
+		settings.GET("/dashboard/overview", middlewares.AuthMiddleware(), Dashboard.Overview)
 
 	}
 }

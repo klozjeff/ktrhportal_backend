@@ -100,3 +100,16 @@ func GenerateAutoIncrementNumber(modelCount int) string {
 	year := today.Year()
 	return fmt.Sprintf("%d%s%s%003d", day, monthString, strconv.Itoa(year)[2:], modelCount)
 }
+
+func ConvertStringToDate(dateStr string) (time.Time, error) {
+	layout := "2006-01-02"
+	// Parse the date string using the layout
+	date, err := time.Parse(layout, dateStr)
+	if err != nil {
+		fmt.Println("Error parsing date:", err)
+		return time.Time{}, err
+	}
+	// Print the resulting time.Time object
+	fmt.Println("Parsed date:", date)
+	return date, nil
+}

@@ -79,11 +79,14 @@ func ListEncounters(c *gin.Context) {
 		}
 	} else {
 
-		if input.EncounterStatusID != "" {
+		if input.StatusId != "" {
 			scopes = append(scopes, input.EncounterStatusFilter)
 		}
-		if input.EncounterProviderID != "" {
+		if input.ProviderId != "" {
 			scopes = append(scopes, input.EncounterProviderFilter)
+		}
+		if input.ClientId != "" {
+			scopes = append(scopes, input.EncounterClientFilter)
 		}
 		if input.DateRange != "" {
 			scopes = append(scopes, input.EncounterBydateRangeFilter)
@@ -205,4 +208,17 @@ func DeleteNote(c *gin.Context) {
 		return
 	}
 	utilities.ShowMessage(c, http.StatusOK, "Note deleted successfully")
+}
+
+func GetNoteDetails(c *gin.Context) {
+	db := database.DB
+	var note models.Note
+	if err := db.
+		Where("id = ?", c.Param("id")).
+		Preload(clause.Associations).
+		First(&note).Error; err != nil {
+		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	utilities.Show(c, http.StatusOK, "success", note)
 }

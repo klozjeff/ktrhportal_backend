@@ -136,11 +136,14 @@ func ListAppointments(c *gin.Context) {
 		}
 	} else {
 
-		if input.AppointmentStatusID != "" {
+		if input.StatusId != "" {
 			scopes = append(scopes, input.AppointmentStatusFilter)
 		}
-		if input.AppointmentDoctorID != "" {
+		if input.ProviderId != "" {
 			scopes = append(scopes, input.AppointmentDoctorFilter)
+		}
+		if input.ClientId != "" {
+			scopes = append(scopes, input.AppointmentClientFilter)
 		}
 		if input.DateRange != "" {
 			scopes = append(scopes, input.AppointmentBydateRangeFilter)
