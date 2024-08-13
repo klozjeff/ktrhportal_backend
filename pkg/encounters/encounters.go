@@ -8,6 +8,7 @@ import (
 	"ktrhportal/services"
 	"ktrhportal/utilities"
 	"net/http"
+	"time"
 
 	"github.com/ggicci/httpin"
 	"github.com/gin-gonic/gin"
@@ -30,13 +31,28 @@ func AddEncounter(c *gin.Context) {
 		return
 	}
 	db := database.DB
+	parsedTime, err := time.Parse("2006-01-02", payload.EncounterStartDate)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "Invalid date format"})
+		return
+	}
+	formattedDate := parsedTime.Format("2006-01-02")
+
 	encounter := models.Encounter{
 		EncounterStartTime: payload.EncounterStartTime,
-		EncounterStartDate: payload.EncounterStartDate,
+		EncounterStartDate: formattedDate,
 		ClientId:           payload.ClientId,
-		ProviderId:         &payload.ProviderId,
-		AppointmentId:      &payload.AppointmentId,
 		CreatedBy:          middlewares.GetAuthUserID(c),
+	}
+
+	// Handle ProviderId
+	if payload.ProviderId != "" {
+		encounter.ProviderId = &payload.ProviderId
+	}
+
+	// Handle AppointmentId
+	if payload.AppointmentId != "" {
+		encounter.AppointmentId = &payload.AppointmentId
 	}
 	if err := db.Create(&encounter).Error; err != nil {
 		utilities.ShowMessage(c, http.StatusBadRequest, err.Error())

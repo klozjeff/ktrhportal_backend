@@ -5,3 +5,5 @@
 *.so
 *.dylib
 .env
+.env.*
+!.env.example

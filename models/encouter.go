@@ -13,9 +13,9 @@ type Encounter struct {
 	EncounterNumber    string           `json:"number"`
 	ClientId           string           `json:"-"`
 	Client             *Client          `json:"client"`
-	ProviderId         *string          `json:"-"`
+	ProviderId         *string          `json:"provider_id"`
 	Provider           *Provider        `json:"provider"`
-	AppointmentId      *string          `json:"-"`
+	AppointmentId      *string          `json:"appointment_id"`
 	Appointment        *Appointment     `json:"appointment"`
 	EncounterStartTime string           `json:"encounter_start_time"`
 	EncounterEndTime   *string          `json:"encounter_end_time"`

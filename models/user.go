@@ -18,6 +18,7 @@ type User struct {
 	Role            *Role          `json:"role"`
 	AccountStatusID string         `json:"account_status_id"`
 	AccountStatus   *AccountStatus `json:"status"`
+	Profile         string         `json:"profile" gorm:"column:profile;index;size:255;"`
 	LastLogin       *time.Time     `json:"last_login"`
 	CreatedAt       time.Time      `json:"-"`
 	UpdatedAt       time.Time      `json:"-"`
